@@ -1,0 +1,45 @@
+$background-color: #081a2a;
+
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica', 'Arial', san-serif;
+}
+
+body{
+  background: $background-color;
+}
+
+#game{
+  margin: 40px auto;
+}
+
+footer{
+  background: darken($background-color, 2);
+  font-size: 11px;
+  color: #595b75;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid #484a5f;
+
+  a{
+    color: #7f83a7;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+.mixpanel{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  @media screen and (max-width: 600px){
+    position: relative;
+    bottom: 0;
+  }
+}
