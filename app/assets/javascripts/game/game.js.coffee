@@ -1,26 +1,54 @@
 Crafty.init(Config.window.width, Config.window.height, document.getElementById('game'))
 Crafty.background('white')
 
-Crafty.c('coin'
-  init: ->
-    @requires('2D, DOM, Color, Text')
-      .color('#bf6042')
-      .attr(w: 50, h: 50)
-      .text('1¢')
-      .textFont(size: '25px/2')
-      .unselectable()
-      .css('text-align': 'center')
-)
-Crafty.e('coin').attr(x: 0, y:0)
+Crafty.c('MoneyButton',
+  _denomination: null
 
-denomonations = [
-  {id: 'penny', value: 1, type: 'coin', color: '#bf6042'}
-  {id: 'nickel', value: 5, type: 'coin'}
-  {id: 'dime', value: 10, type: 'coin'}
-  {id: 'quarter', value: 25, type: 'coin'}
-  {id: 'half-dollar', value: 50, type: 'coin'}
-  {id: 'dollar', value: 100, type: 'bill'}
-  {id: 'five-dollars', value: 500, type: 'bill'}
-  {id: 'ten-dollars', value: 1000, type: 'bill'}
-  {id: 'twenty-dollars', value: 2000, type: 'bill'}
-]
+  init: ->
+    @requires('2D, DOM, Color, Mouse, Text')
+    .attr(w: 30, h: 30)
+    .textColor('#FFFFFF')
+    .textFont(size: '13px/30px')
+    .css('text-align': 'center')
+    .unselectable()
+    .bind('MouseDown', -> @alpha = 0.8)
+    .bind('MouseUp', -> @alpha = 1)
+
+  amount: (value) ->
+    @_denomination = value
+    printValue = Math.abs(value)
+    if (printValue >= 100)
+      @text("#{printValue/100}$")
+    else
+      @text("#{printValue}¢")
+    @
+
+  add: ->
+    @color('green')
+    .bind('Click', ->
+      Game.player.get('cashInRegister').add(@_denomination)
+    )
+  sub: ->
+    @color('red')
+    .bind('Click', ->
+      Game.player.get('cashInRegister').subtract(@_denomination)
+    )
+)
+
+
+cashInRegister = Game.player.get('cashInRegister')
+amountLabel = Crafty.e('2D, DOM, Text').attr(x: 240, y: 0).text(cashInRegister.valueString()).textFont(size: '20px')
+y = 30
+labels = {}
+
+for denomination in Game.DENOMINATIONS
+  Crafty.e('MoneyButton').amount(denomination).add().attr(x: 240, y: y)
+  label = Crafty.e('2D, DOM, Text').attr(x: 270, y: y, w: 20).textFont(size: '10px/30px').css('text-align': 'center').text(cashInRegister.amountOf(denomination))
+  labels[denomination] = label
+  Crafty.e('MoneyButton').amount(denomination).sub().attr(x: 290, y: y)
+  y += 40
+
+cashInRegister.on 'change', ->
+  amountLabel.text(@valueString())
+  for denomination in Game.DENOMINATIONS
+    labels[denomination].text(@amountOf(denomination))
