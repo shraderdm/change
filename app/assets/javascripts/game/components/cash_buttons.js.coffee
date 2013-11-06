@@ -1,17 +1,27 @@
 Crafty.c 'CashButtons',
   init: ->
     @requires('2D').attr(x: 240, y: 20)
-    @_buttons = []
-
-  cash: (cash) ->
-    @_cash = cash
-    y = @_y
-
-    _.each Game.DENOMINATIONS, (denomination) =>
-      button = Crafty.e('DenominationButton').attr(x: @_x, y: y).denomination(denomination).amount(@_cash.amountOf(denomination))
-      @_cash.on("change:#{denomination}", => button.amount(@_cash.amountOf(denomination)))
-      @_buttons.push(button)
-      button.bind('Click', => @trigger('ButtonClick', denomination))
-      y += 40
+    @_buttons = {}
 
     @
+
+  cash: (cash) ->
+    @_cash.off() if @_cash?
+    @_cash = cash
+    @_bY = @_y
+
+    _.each Game.DENOMINATIONS, (denomination) =>
+      button = @_createOrInitializeButton(denomination)
+      button.amount(@_cash.amountOf(denomination))
+      @_cash.on("change:#{denomination}", => button.amount(@_cash.amountOf(denomination)))
+
+
+    @
+
+  _createOrInitializeButton: (denomination) ->
+    return @_buttons[denomination] if @_buttons[denomination]
+    button = Crafty.e('DenominationButton').attr(x: @_x, y: @_bY).denomination(denomination)
+    button.bind('Click', => @trigger('ButtonClick', denomination))
+    @_buttons[denomination] = button
+    @_bY += 40
+    button
