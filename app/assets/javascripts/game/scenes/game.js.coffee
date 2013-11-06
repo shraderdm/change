@@ -3,6 +3,7 @@ Crafty.scene "game", ->
 
   Game.player.set('cashOut', new Game.Cash())
 
+  ticker = Crafty.e('Ticker').attr(x:20, y: 20)
 
   cashOut = Game.player.get('cashOut')
   cashInRegister = Game.player.get('cashInRegister')
