@@ -28,6 +28,7 @@ Crafty.c('MoneyButton',
     .bind('Click', ->
       Game.player.get('cashInRegister').add(@_denomination)
     )
+
   sub: ->
     @color('red')
     .bind('Click', ->
