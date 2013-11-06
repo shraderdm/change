@@ -26,13 +26,14 @@ Crafty.scene "game", ->
     add: ->
       @color('green')
       .bind('Click', ->
-        Game.player.get('cashInRegister').add(@_denomination)
-      )
+          Game.player.get('cashInRegister').add(@_denomination)
+        )
+
     sub: ->
       @color('red')
       .bind('Click', ->
-        Game.player.get('cashInRegister').subtract(@_denomination)
-      )
+          Game.player.get('cashInRegister').subtract(@_denomination)
+        )
   )
 
 

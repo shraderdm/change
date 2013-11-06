@@ -5,6 +5,6 @@ class Player extends Backbone.Model
     @reset()
 
   reset: ->
-    @set('cashInRegister', new Game.Amount(default: DEFAULT_AMOUNT_OF_DENOMINATION))
+    @set('cashInRegister', new Game.Cash(default: DEFAULT_AMOUNT_OF_DENOMINATION))
 
 Game.player = new Player()
