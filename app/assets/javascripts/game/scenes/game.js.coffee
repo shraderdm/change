@@ -1,11 +1,13 @@
 Crafty.scene "game", ->
   Crafty.background('white')
 
-  Game.player.set('cashOut', new Game.Cash())
 
 
-  cashOut = Game.player.get('cashOut')
+  round = new Game.Round(player: Game.player)
+  cashOut = round.get('cashOut')
   cashInRegister = Game.player.get('cashInRegister')
+
+  Crafty.e('CashButtons').attr(x: 160).cash(round.get('customer').get('paid'))
 
   Crafty.e('CashButtons').cash(cashOut).bind('ButtonClick', (denomination) ->
     cashOut.subtract(denomination)
