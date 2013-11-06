@@ -10,20 +10,36 @@ Crafty.c('DenominationButton',
     .textFont(size: '13px/30px')
     .css('text-align': 'center')
     .unselectable()
-    .bind('MouseDown', -> @alpha = 0.8)
-    .bind('MouseUp', -> @alpha = 1)
+#    .bind('MouseDown', -> @alpha = 0.8)
+#    .bind('MouseUp', -> @alpha = 1)
 
   denomination: (value) ->
     @_denomination = value
+    @color(@_colors[value])
+    @requires('coin') unless @_isDollar()
     @_updateText()
 
   amount: (value) ->
     @_amount = value
-    @alpha = value / 10 + 0.3
+    @alpha = value / 10 + 0.1
     @_updateText()
 
   _updateText: ->
-    denominationString = if @_denomination >= 100 then "#{@_denomination/100}$" else "#{@_denomination}¢"
+    denominationString = if @_isDollar() then "#{@_denomination/100}$" else "#{@_denomination}¢"
     @text("#{denominationString} x #{@_amount}")
     @
+
+  _isDollar: ->
+    @_denomination >= 100
+
+
+  _colors:
+    1: '#bf6042'
+    5: '#b5b6b5'
+    10: '#9EA89E'
+    25: '#9EA8A8'
+    50: '#A8A89E'
+    100: '#85bb65'
+    500: '#9BD678'
+    1000: '#7DB03A'
 )
