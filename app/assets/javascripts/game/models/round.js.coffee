@@ -10,3 +10,4 @@ class Game.Round extends Backbone.Model
   _checkVictory: ->
     if @get('customer').correctChange() == @get('cashOut').value()
       alert("OLE!")
+#      @get('player').get('cashInRegister').merge(@get('customer').get('paid'))

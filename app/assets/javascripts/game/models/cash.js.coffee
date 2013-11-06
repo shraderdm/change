@@ -21,9 +21,7 @@ class Game.Cash extends Backbone.Model
     v
 
   valueString: (withSymbol = true) ->
-    s = (@value()/100).toFixed(2)
-    s = "$" + s if withSymbol
-    s
+    @value().toMoneyString(withSymbol)
 
   # value for specific denomination
   valueFor: (denomination) ->
