@@ -5,7 +5,7 @@ class Game.Customer extends Backbone.Model
     @set('paid', @_randomizePaid())
 
   _randomizePrice: ->
-    _.sample([499, 1230, 1100])
+    _.sample([499, 1230, 1100, 199, 599, 250, 769, 1940, 156, 79])
 
   _randomizePaid: ->
     paid = new Game.Cash(1000: 5)
