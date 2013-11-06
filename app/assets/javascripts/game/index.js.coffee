@@ -3,7 +3,10 @@
 #= require ./config
 #= require_directory ./components
 #= require_directory ./models
-#= require ./game
-
+#= require_directory ./scenes
 
 window.Game = {}
+
+$(document).ready ->
+  Crafty.init(Config.window.width, Config.window.height, document.getElementById('game'))
+  Crafty.scene('game')
