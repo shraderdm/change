@@ -21,7 +21,7 @@ Crafty.c('DenominationButton',
 
   amount: (value) ->
     @_amount = value
-    @alpha = value / 10 + 0.1
+    @alpha = value / 2 + 0.1
     @_updateText()
 
   _updateText: ->
