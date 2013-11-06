@@ -23,10 +23,8 @@ Crafty.c 'Ticker',
 
   _tick: ->
     return if @_didRoundEnd()
-
     @_remainingSeconds -= 1
     @_updateTicker()
-
     @trigger('RoundTimeEnded') if @_didRoundEnd()
 
   _updateTicker: ->
