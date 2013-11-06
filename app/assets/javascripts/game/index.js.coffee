@@ -3,6 +3,7 @@
 #= require ./config
 #= require_directory ./components
 #= require_directory ./models
+#= require_directory ./components
 #= require_directory ./scenes
 
 window.Game = {}

@@ -2,6 +2,7 @@ Crafty.scene "game", ->
   Crafty.background('white')
 
 
+  ticker = Crafty.e('Ticker').attr(x:20, y: 20)
 
   round = new Game.Round(player: Game.player)
   cashOut = round.get('cashOut')
