@@ -15,7 +15,6 @@ Crafty.c 'CashButtons',
       button.amount(@_cash.amountOf(denomination))
       @_cash.on("change:#{denomination}", => button.amount(@_cash.amountOf(denomination)))
 
-
     @
 
   _createOrInitializeButton: (denomination) ->

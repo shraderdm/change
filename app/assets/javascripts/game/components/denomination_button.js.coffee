@@ -10,8 +10,6 @@ Crafty.c('DenominationButton',
     .textFont(size: '13px/30px')
     .css('text-align': 'center')
     .unselectable()
-#    .bind('MouseDown', -> @alpha = 0.8)
-#    .bind('MouseUp', -> @alpha = 1)
 
   denomination: (value) ->
     @_denomination = value
