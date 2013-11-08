@@ -1,4 +1,4 @@
-Crafty.scene "game", ->
+Crafty.scene 'game', ->
   Crafty.background('white')
 
   # initialization
@@ -10,7 +10,7 @@ Crafty.scene "game", ->
     cashOut:        Crafty.e('CashButtons').attr(x: 260)
     cashInRegister: Crafty.e('CashButtons').attr(x: 360)
 
-  currentRound = null
+  currentCustomer = null
   player = new Game.Player()
 
   # event bindings
@@ -27,17 +27,17 @@ Crafty.scene "game", ->
 
   # methods
 
-  endRound = ->
-    currentRound.off('EndedRoundSuccessfully', endRound)
-    player.get('cashInRegister').merge(currentRound.get('customer').get('paid'))
+  submitRound = ->
+    player.get('cashInRegister').merge(currentCustomer.get('paid'))
+    plater.set('cashOut', 0)
     generateNewRound()
 
   generateNewRound = ->
-    currentRound = new Game.Round(player: player)
-    ui.customerPrice.customer(currentRound.get('customer'))
-    ui.customerPaid.cash(currentRound.get('customer').get('paid'))
-    ui.cashOut.cash(currentRound.get('cashOut'))
-    currentRound.on('EndedRoundSuccessfully', endRound)
+    currentCustomer = new Game.Customer()
+
+    ui.customerPrice.customer(currentCustomer)
+    ui.customerPaid.cash(currentCustomer.get('paid'))
+    ui.cashOut.cash(player.get('cashOut'))
 
   # run
 
