@@ -5,7 +5,7 @@ class Game.Customer extends Backbone.Model
     @set('paid', @_randomizePaid())
 
   _randomizePrice: ->
-    _.sample([499, 1230, 1100, 199, 599, 250, 769, 1940, 156, 79,50,99,24, 299,249,229])
+    _.sample([499, 1230, 1105, 199, 599, 250, 769, 1940, 156, 79,50,99,24, 299,249,229])
 
   _randomizePaid: ->
     paid = new Game.Cash()
@@ -18,7 +18,9 @@ class Game.Customer extends Backbone.Model
 
   _randomChunk: (target)->
     random = Math.random()
-    if  random <= 0.3
+    if target > 1000
+      return new Game.Cash(1000: 1)
+    if random <= 0.5
       @_smallerDenomRounded(target)
     else
       @_oneLargeDenomination(target)
