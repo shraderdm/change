@@ -11,28 +11,29 @@ Crafty.scene "game", ->
     cashInRegister: Crafty.e('CashButtons').attr(x: 360)
 
   currentRound = null
+  player = new Game.Player()
 
   # event bindings
 
   ui.cashOut.bind('ButtonClick', (denomination) ->
     currentRound.get('cashOut').subtract(denomination)
-    Game.player.get('cashInRegister').add(denomination)
+    player.get('cashInRegister').add(denomination)
   )
 
   ui.cashInRegister.bind('ButtonClick', (denomination) ->
-    Game.player.get('cashInRegister').subtract(denomination)
+    player.get('cashInRegister').subtract(denomination)
     currentRound.get('cashOut').add(denomination)
   )
 
   # methods
 
   generateNewRound = ->
-    currentRound = new Game.Round(player: Game.player)
+    currentRound = new Game.Round(player: player)
     ui.customerPrice.customer(currentRound.get('customer'))
     ui.customerPaid.cash(currentRound.get('customer').get('paid'))
+    ui.cashOut.cash(currentRound.get('cashOut'))
 
   # run
 
-  ui.cashOut.cash(new Game.Cash()) # init with empty cash.
-  ui.cashInRegister.cash(Game.player.get('cashInRegister'))
+  ui.cashInRegister.cash(player.get('cashInRegister'))
   generateNewRound()
