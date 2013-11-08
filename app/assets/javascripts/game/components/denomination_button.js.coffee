@@ -28,8 +28,7 @@ Crafty.c('DenominationButton',
     @
 
   _isDollar: ->
-    @_denomination >= 100
-
+    Game.isBill(@_denomination)
 
   _colors:
     1: '#bf6042'
