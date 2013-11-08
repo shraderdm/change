@@ -16,25 +16,26 @@ Crafty.scene 'game', ->
   # event bindings
 
   ui.cashOut.bind('ButtonClick', (denomination) ->
-    currentRound.get('cashOut').subtract(denomination)
+    player.get('cashOut').subtract(denomination)
     player.get('cashInRegister').add(denomination)
   )
 
   ui.cashInRegister.bind('ButtonClick', (denomination) ->
     player.get('cashInRegister').subtract(denomination)
-    currentRound.get('cashOut').add(denomination)
+    player.get('cashOut').add(denomination)
   )
+
+  @bind('KeyDown', (ev) -> submitRound() if ev.key == Crafty.keys[Config.input.submit])
 
   # methods
 
   submitRound = ->
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
-    plater.set('cashOut', 0)
+    player.set('cashOut', new Game.Cash())
     generateNewRound()
 
   generateNewRound = ->
     currentCustomer = new Game.Customer()
-
     ui.customerPrice.customer(currentCustomer)
     ui.customerPaid.cash(currentCustomer.get('paid'))
     ui.cashOut.cash(player.get('cashOut'))
