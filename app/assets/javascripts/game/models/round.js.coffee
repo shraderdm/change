@@ -10,6 +10,4 @@ class Game.Round extends Backbone.Model
     @stopListening()
 
   _checkVictory: ->
-    if @get('customer').correctChange() == @get('cashOut').value()
-      alert("OLE!")
-#      @get('player').get('cashInRegister').merge(@get('customer').get('paid'))
+    @trigger('EndedRoundSuccessfully') if @get('customer').correctChange() == @get('cashOut').value()

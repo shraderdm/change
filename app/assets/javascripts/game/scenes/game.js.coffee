@@ -27,11 +27,17 @@ Crafty.scene "game", ->
 
   # methods
 
+  endRound = ->
+    currentRound.off('EndedRoundSuccessfully', endRound)
+    player.get('cashInRegister').merge(currentRound.get('customer').get('paid'))
+    generateNewRound()
+
   generateNewRound = ->
     currentRound = new Game.Round(player: player)
     ui.customerPrice.customer(currentRound.get('customer'))
     ui.customerPaid.cash(currentRound.get('customer').get('paid'))
     ui.cashOut.cash(currentRound.get('cashOut'))
+    currentRound.on('EndedRoundSuccessfully', endRound)
 
   # run
 
