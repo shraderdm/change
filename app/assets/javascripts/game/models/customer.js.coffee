@@ -26,7 +26,7 @@ class Game.Customer extends Backbone.Model
       @_oneLargeDenomination(target)
 
   _smallerDenomRounded: (target)->
-    roundDenominations = [25, 50, 100]
+    roundDenominations = [50, 100, 500]
     roundTo = _.sample(roundDenominations)
     target = Math.ceil(target/roundTo) * roundTo
     cash = new Game.Cash()

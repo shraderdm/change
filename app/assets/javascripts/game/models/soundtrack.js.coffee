@@ -31,7 +31,7 @@ class Game.Soundtrack extends Backbone.Model
 
   play: ->
     console.log('playing', @_trackName(), @_trackPaths())
-    Crafty.audio.play(@_trackName(), 1)
+    Crafty.audio.play(@_trackName(), 1, 0.5)
     Crafty.audio.sounds[@_trackName()].obj.addEventListener "ended", _.once =>
       setTimeout((=> @playNextRandomTrack()), @TRACK_DELAY)
 
