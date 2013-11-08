@@ -1,5 +1,22 @@
+@import 'compass';
+
 .coin{
   border-radius: 100%;
   box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.4), 0px 1px 2px 2px rgba(0,0,0,0.25) inset;
   border: 2px solid rgba(black, 0.2);
+}
+
+
+.background{
+  width: 960px;
+  height: 540px;
+  background-color: #aabbbf; // layer fill content
+  @include background-image(linear-gradient(bottom, rgba(0,0,0,.72) 58.78%, rgba(0,0,0,0) 116.78%)); // gradient overlay
+}
+
+.table{
+  width: 990px;
+  height: 449px;
+  background-color: #cea238; // layer fill content
+  @include background-image(linear-gradient(bottom, rgba(0,0,0,.31) 0%, rgba(255,255,255,.31) 100%)); // gradient overlay
 }

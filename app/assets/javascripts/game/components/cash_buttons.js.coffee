@@ -1,6 +1,6 @@
 Crafty.c 'CashButtons',
   init: ->
-    @requires('2D').attr(x: 240, y: 20)
+    @requires('2D').attr(x: 240, y: 120)
     @_buttons = {}
 
     @

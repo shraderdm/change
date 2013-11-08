@@ -2,8 +2,8 @@
 #= require_self
 #= require ./config
 #= require_directory ./components
+#= require_directory ./objects
 #= require_directory ./models
-#= require_directory ./components
 #= require_directory ./scenes
 
 window.Game = {}

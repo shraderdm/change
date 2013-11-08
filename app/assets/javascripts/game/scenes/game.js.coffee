@@ -6,15 +6,24 @@ Crafty.scene 'game', ->
   # initialization
 
   ui =
-    ticker:         Crafty.e('Ticker').attr(x:20, y: 20)
+    background:     Crafty.e('2D, DOM, background').attr(x: 0, y:0, w: Config.window.width, h: Config.window.height)
+    table:          Crafty.e('2D, DOM, table').attr(x: 0, y:(Config.window.height - 450), w: Config.window.width, h: 450)
+    ticker:         Crafty.e('Ticker').attr(x:20, y: 15)
     customerPrice:  Crafty.e('CustomerPrice').attr(x:20, y:200)
     customerPaid:   Crafty.e('CashButtons').attr(x: 160)
     cashOut:        Crafty.e('CashButtons').attr(x: 260)
     cashInRegister: Crafty.e('CashButtons').attr(x: 360)
     soundControls:  Crafty.e('SoundControls').attr(x: 500, y: 20).soundtrack(soundtrack)
-    submitButton:   Crafty.e('2D, DOM, Mouse, Color, Text').attr(x: 160, y: 360, w: 260, h: 40).color('#9482BA').textFont(size: '16px/40px').textColor('#FFFFFF').css('text-align': 'center').text('Submit')
-    feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 410, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
+    submitButton:   Crafty.e('2D, DOM, Mouse, Color, Text').attr(x: 160, y: 420, w: 260, h: 40).color('#9482BA').textFont(size: '16px/40px').textColor('#FFFFFF').css('text-align': 'center').text('Submit')
+    feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 470, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
 
+    shadow:         Crafty.e('2D, DOM, Image').image(Game.images.shadow).attr(x: 140, y: 180)
+    hand1:          Crafty.e('2D, DOM, Image').image(Game.images.hand1).attr(x: -100, y: 250)
+    hand2:          Crafty.e('2D, DOM, Image').image(Game.images.hand2).attr(x: 360, y: 440)
+    hand3:          Crafty.e('2D, DOM, Image').image(Game.images.hand3).attr(x: 854, y: 333)
+
+  ui.shadow.alpha = 0.5
+  window.ui = ui
 
   currentCustomer = null
   player = new Game.Player()
