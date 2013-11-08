@@ -6,7 +6,7 @@ Crafty.c 'Ticker',
     .textFont(size: '60px')
     .delay(@_tick, 1000, Infinity)
 
-    @_secondsInRound = Config.round.time
+    @_secondsInRound = Config.game.time
     @_remainingSeconds = @_secondsInRound
 
     @_updateTicker()

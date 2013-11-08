@@ -25,7 +25,7 @@ Crafty.scene 'game', ->
     player.get('cashOut').add(denomination)
   )
 
-  @bind('KeyDown', (ev) -> submitRound() if ev.key == Crafty.keys['SPACE'])
+  @bind('KeyDown', (ev) -> submitRound() if ev.key == Crafty.keys[Config.input.submit])
 
   # methods
 
