@@ -12,6 +12,9 @@ Crafty.scene 'game', ->
     cashOut:        Crafty.e('CashButtons').attr(x: 260)
     cashInRegister: Crafty.e('CashButtons').attr(x: 360)
     soundControls:  Crafty.e('SoundControls').attr(x: 500, y: 20).soundtrack(soundtrack)
+    submitButton:   Crafty.e('2D, DOM, Mouse, Color, Text').attr(x: 160, y: 360, w: 260, h: 40).color('#9482BA').textFont(size: '16px/40px').textColor('#FFFFFF').css('text-align': 'center').text('Submit')
+    feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 410, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
+
 
   currentCustomer = null
   player = new Game.Player()
@@ -29,10 +32,17 @@ Crafty.scene 'game', ->
   )
 
   @bind('KeyDown', (ev) -> submitRound() if ev.key == Crafty.keys[Config.input.submit])
+  ui.submitButton.bind('Click', -> submitRound())
 
   # methods
 
   submitRound = ->
+    difference = Math.abs(currentCustomer.correctChange() - player.get('cashOut').value())
+    text = "GREAT!"
+    if difference > 0
+      text = "You were off by #{difference.toMoneyString()}"
+    ui.feedbackLabel.text(text).attr(alpha: 1).tween({alpha: 0}, 60)
+
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
     generateNewRound()
