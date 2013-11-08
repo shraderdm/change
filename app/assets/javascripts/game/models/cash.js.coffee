@@ -5,12 +5,12 @@ class Game.Cash extends Backbone.Model
 
   # Set up a new amount object
   # options:
-  #   default: amount for each multiplier by default
+  #   defaults: amount for each multiplier by default
   #   1,5,50...: specific amounts for each multiplier
   constructor: (@options = {}) ->
     super()
     for denomination in Game.DENOMINATIONS
-      value = Math.max(0, @options[denomination] || @options.default || 0)
+      value = Math.max(0, @options[denomination] || @options.defaults || 0)
       @set(denomination, value)
 
   # calculate the value for all the money
