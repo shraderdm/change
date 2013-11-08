@@ -46,6 +46,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
     haml (4.0.3)
       tilt
     hike (1.2.3)
@@ -123,6 +125,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   debugger
+  font-awesome-rails
   haml
   jquery-rails
   powder

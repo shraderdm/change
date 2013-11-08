@@ -1,5 +1,7 @@
 Crafty.scene 'game', ->
   Crafty.background('white')
+  soundtrack = new Game.Soundtrack()
+  soundtrack.start()
 
   # initialization
 
@@ -9,6 +11,7 @@ Crafty.scene 'game', ->
     customerPaid:   Crafty.e('CashButtons').attr(x: 160)
     cashOut:        Crafty.e('CashButtons').attr(x: 260)
     cashInRegister: Crafty.e('CashButtons').attr(x: 360)
+    soundControls:  Crafty.e('SoundControls').attr(x: 500, y: 20).soundtrack(soundtrack)
 
   currentCustomer = null
   player = new Game.Player()
