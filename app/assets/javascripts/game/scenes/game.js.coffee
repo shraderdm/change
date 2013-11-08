@@ -9,7 +9,7 @@ Crafty.scene "game", ->
   cashOut = round.get('cashOut')
   cashInRegister = Game.player.get('cashInRegister')
 
-  Crafty.e('2D, DOM, Text').attr(x:20, y:200).text(round.get('customer').get('price').toMoneyString()).textFont(size: '30px')
+  Crafty.e('CustomerPrice').attr(x:20, y:200).customer(round.get('customer'))
 
   Crafty.e('CashButtons').attr(x: 160).cash(round.get('customer').get('paid'))
 
