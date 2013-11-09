@@ -14,12 +14,12 @@ class Game.Soundtrack extends Backbone.Model
 
   initialize: ->
     @set('count', @get('songs').length)
-    @_chooseRandomSong() unless @get('currentSong')?
-    @_loadTrack()
+#    @_chooseRandomSong() unless @get('currentSong')?
+#    @_loadTrack()
 
   start: ->
-    @play()
-    @_startLoading()
+#    @play()
+#    @_startLoading()
 
   next: ->
     Crafty.audio.stop(@_trackName())

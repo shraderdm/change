@@ -45,7 +45,6 @@ class SoundEffects extends Backbone.Model
   _play: (options) ->
     randomIdx = _.random(options.count)
     key = options.keyFormat.format(randomIdx)
-    console.log('playing ', key)
     Crafty.audio.play(key, 1)
 
   _loadFiles: (options) ->

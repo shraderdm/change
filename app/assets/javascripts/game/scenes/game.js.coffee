@@ -14,13 +14,20 @@ Crafty.scene 'game', ->
     feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 470, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
 
     cashTray:       Crafty.e('CashTray')
-#    cashTrayClosed: Crafty.e('2D, DOM, Image').image(Game.images.cashTrayclosed).attr(x: 560, y: 254)
     cashRegister:   Crafty.e('2D, DOM, Image').image(Game.images.cashRegister).attr(x: 560, y: 50, z: 10)
     receipt:        Crafty.e('Receipt')
     ticker:         Crafty.e('Ticker')
 
     soundControls:  Crafty.e('SoundControls').attr(x: 895, y: 14).soundtrack(soundtrack)
     foregroundEls:  Crafty.e('ForegroundElements')
+
+  Crafty.e('TrayDenominationPile').denomination(1).attr(x: 580, y: 416)
+  Crafty.e('TrayDenominationPile').denomination(5).attr(x: 668, y: 416)
+  Crafty.e('TrayDenominationPile').denomination(50).attr(x: 844, y: 416)
+  Crafty.e('TrayDenominationPile').denomination(10).attr(x: 756, y: 416)
+  Crafty.e('TrayDenominationPile').denomination(100).attr(x: 580, y: 278)
+  Crafty.e('TrayDenominationPile').denomination(500).attr(x: 668, y: 278)
+  Crafty.e('TrayDenominationPile').denomination(1000).attr(x: 756, y: 278)
 
   window.ui = ui
   currentCustomer = null
