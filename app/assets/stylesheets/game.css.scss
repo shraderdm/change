@@ -20,3 +20,12 @@
   background-color: #cea238; // layer fill content
   @include background-image(linear-gradient(bottom, rgba(0,0,0,.31) 0%, rgba(255,255,255,.31) 100%)); // gradient overlay
 }
+
+.receipt{
+  border-style: solid;
+  border-width: 7px 0px 0px;
+  @include border-image(image-url('receipt-top.png') 6 1 0 fill repeat);
+
+  width: 110px;
+  height: 110px;
+}

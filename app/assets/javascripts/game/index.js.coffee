@@ -10,4 +10,4 @@ window.Game = {}
 
 $(document).ready ->
   Crafty.init(Config.window.width, Config.window.height, document.getElementById('game'))
-  Crafty.scene('game')
+  Crafty.scene('loading')

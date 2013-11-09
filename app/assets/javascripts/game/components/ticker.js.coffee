@@ -3,7 +3,9 @@ Crafty.c 'Ticker',
   init: ->
     @requires('2D, DOM, Text, Delay')
     .textColor('black')
-    .textFont(size: '60px')
+    .attr({w: 174, h: 46, x: 752, y: 107, z: 10})
+    .textFont(size: '39px')
+    .css('text-align': 'center')
     .delay(@_tick, 1000, Infinity)
 
     @_secondsInRound = Config.game.time
@@ -28,7 +30,7 @@ Crafty.c 'Ticker',
     @trigger('RoundTimeEnded') if @_didRoundEnd()
 
   _updateTicker: ->
-    @text(@_remainingSeconds)
+    @text(@_remainingSeconds.toMMSS())
     @trigger('RoundTimeChanged')
 
   _didRoundEnd: ->

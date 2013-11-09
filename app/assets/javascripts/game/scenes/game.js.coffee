@@ -7,8 +7,6 @@ Crafty.scene 'game', ->
 
   ui =
     backgroundEls:  Crafty.e('BackgroundElements')
-    ticker:         Crafty.e('Ticker').attr(x:20, y: 15)
-    customerPrice:  Crafty.e('CustomerPrice').attr(x:20, y:200)
     customerPaid:   Crafty.e('CashButtons').attr(x: 160)
     cashOut:        Crafty.e('CashButtons').attr(x: 260)
     cashInRegister: Crafty.e('CashButtons').attr(x: 360)
@@ -16,8 +14,14 @@ Crafty.scene 'game', ->
     submitButton:   Crafty.e('2D, DOM, Mouse, Color, Text').attr(x: 160, y: 420, w: 260, h: 40).color('#9482BA').textFont(size: '16px/40px').textColor('#FFFFFF').css('text-align': 'center').text('Submit')
     feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 470, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
 
+    cashRegister:   Crafty.e('2D, DOM, Image').image(Game.images.cashRegister).attr(x: 560, y: 50)
+    cashTrayC:       Crafty.e('2D, DOM, Image').image(Game.images.cashTrayclosed).attr(x: 560, y: 254)
+    receipt:        Crafty.e('Receipt')
+    ticker:         Crafty.e('Ticker')
+
     foregroundEls:  Crafty.e('ForegroundElements')
 
+  window.ui = ui
   currentCustomer = null
   player = new Game.Player()
 
@@ -54,7 +58,7 @@ Crafty.scene 'game', ->
 
   generateNewRound = ->
     currentCustomer = new Game.Customer()
-    ui.customerPrice.customer(currentCustomer)
+    ui.receipt.customer(currentCustomer).animateUp()
     ui.customerPaid.cash(currentCustomer.get('paid'))
     ui.cashOut.cash(player.get('cashOut'))
     Game.sfx.playRegisterClose()
