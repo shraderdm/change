@@ -3,7 +3,7 @@ Crafty.c 'CustomerPrice',
   init: ->
     @requires('2D, DOM, Text')
     .textFont(size: '30px')
-    .attr(w: 110, h: 40, x: 0, y: 50, z: 20) #relative to receipt
+    .attr(w: 110, h: 40, x: 0, y: 50, z: 521)
     .css('text-align': 'center', 'text-decoration': 'underline')
 
   customer: (customer) ->
@@ -20,7 +20,7 @@ Crafty.c 'Receipt',
       .attr(w: 110, h: @_height)
     @customePrice = Crafty.e('CustomerPrice')
     @attach(@customePrice)
-      .attr(x: 592, y: @_ypos, z: 20)
+      .attr(x: 592, y: @_ypos, z: 520)
     @bind('TweenEnd', @_showCustomerPrice)
     @
 

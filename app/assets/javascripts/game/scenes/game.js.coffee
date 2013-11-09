@@ -14,7 +14,7 @@ Crafty.scene 'game', ->
     feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 470, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
 
     cashTray:       Crafty.e('CashTray')
-    cashRegister:   Crafty.e('2D, DOM, Image').image(Game.images.cashRegister).attr(x: 560, y: 50, z: 10)
+    cashRegister:   Crafty.e('2D, DOM, Image').image(Game.images.cashRegister).attr(x: 560, y: 50, z: 500)
     receipt:        Crafty.e('Receipt')
     ticker:         Crafty.e('Ticker')
 

@@ -3,7 +3,7 @@ Crafty.c 'Ticker',
   init: ->
     @requires('2D, DOM, Text, Delay')
     .textColor('black')
-    .attr({w: 174, h: 46, x: 752, y: 107, z: 10})
+    .attr({w: 174, h: 46, x: 752, y: 107, z: 500})
     .textFont(size: '39px')
     .css('text-align': 'center')
     .delay(@_tick, 1000, Infinity)
