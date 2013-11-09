@@ -7,14 +7,15 @@ Crafty.scene 'game', ->
 
   ui =
     backgroundEls:  Crafty.e('BackgroundElements')
-    customerPaid:   Crafty.e('CashButtons').attr(x: 160)
-    cashOut:        Crafty.e('CashButtons').attr(x: 260)
-    cashInRegister: Crafty.e('CashButtons').attr(x: 360)
-    submitButton:   Crafty.e('2D, DOM, Mouse, Color, Text').attr(x: 160, y: 420, w: 260, h: 40).color('#9482BA').textFont(size: '16px/40px').textColor('#FFFFFF').css('text-align': 'center').text('Submit')
-    feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 470, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
 
-    cashTray:       Crafty.e('CashTray')
+    submitButton:   Crafty.e('2D, DOM, Mouse, Color, Text').attr(x: 160, y: 280, w: 260, h: 40).color('#9482BA').textFont(size: '16px/40px').textColor('#FFFFFF').css('text-align': 'center').text('Submit')
+    feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 250, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
+
+    customerCash:   Crafty.e('CashPile').attr(x: 20, y: 115).dir('down')
+    cashOut:        Crafty.e('CashPile').attr(x: 20, y: 450).dir('up')
+
     cashRegister:   Crafty.e('2D, DOM, Image').image(Game.images.cashRegister).attr(x: 560, y: 50, z: 500)
+    cashTray:       Crafty.e('CashTray')
     receipt:        Crafty.e('Receipt')
     ticker:         Crafty.e('Ticker')
 
@@ -26,6 +27,8 @@ Crafty.scene 'game', ->
   currentCustomer = null
   player = new Game.Player()
 
+
+
   # event bindings
 
 
@@ -34,15 +37,13 @@ Crafty.scene 'game', ->
     player.get('cashOut').add(denomination)
     Game.sfx.playDenomination(denomination)
 
-  ui.cashTray.bind 'DenominationClick', moveFromTrayToOut
-  ui.cashInRegister.bind 'ButtonClick', moveFromTrayToOut
-
-
-  ui.cashOut.bind('ButtonClick', (denomination) ->
-    player.get('cashOut').subtract(denomination)
+  moveBackToTray = (denomination) ->
     player.get('cashInRegister').add(denomination)
+    player.get('cashOut').subtract(denomination)
     Game.sfx.playDenomination(denomination)
-  )
+
+  ui.cashTray.bind 'DenominationClick', moveFromTrayToOut
+  ui.cashOut.bind 'DenominationClick', moveBackToTray
 
   @bind('KeyDown', (ev) -> submitRound() if ev.key == Crafty.keys[Config.input.submit])
   ui.submitButton.bind('Click', -> submitRound())
@@ -67,12 +68,10 @@ Crafty.scene 'game', ->
     ui.receipt.customer(currentCustomer).animateUp()
 
     ui.cashTray.open()
-    ui.customerPaid.cash(currentCustomer.get('paid'))
+    ui.customerCash.cash(currentCustomer.get('paid'))
     ui.cashOut.cash(player.get('cashOut'))
     Game.sfx.playRegisterClose()
 
   # run
-
-  ui.cashInRegister.cash(player.get('cashInRegister'))
   ui.cashTray.cash(player.get('cashInRegister'))
   generateNewRound()

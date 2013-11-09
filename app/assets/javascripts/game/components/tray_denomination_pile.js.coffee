@@ -1,34 +1,34 @@
-Crafty.c 'DenominationPile',
+Crafty.c 'TrayDenominationPile',
   randomizers:
     bill:
-      rotation: 4
+      rotation: 10
       x: 5
-      y: 2
+      y: 5
     coin:
-      rotation: 3
-      x: 5
-      y: 3
+      rotation: 2
+      x: 10
+      y: 10
 
-  _yDiff: 10
-  _amount: 0
+  _amount: 10
 
   init: ->
     _.bindAll(@, '_createDenomination')
     @requires('2D, DOM, Mouse')
+     .attr(z: 299, w: 82)
     @denominations = []
-    @bind('Click', -> @amount(@_amount - 1 ))
-
-  yDiff: (ydiff)->
-    @_yDiff = ydiff
-    @
 
   denomination: (denomination) ->
+    if Game.isBill(denomination)
+      @attr(h: 129)
+    else
+      @attr(h: 80)
     @_denomination = denomination
+    _.times @_amount, @_createDenomination
     @
 
   amount: (amount) ->
     @_amount = amount
-    _.times amount - @denominations.length, =>
+    _.times amount - @denominations.length, => # create more than the 10 initial denomination
       @_createDenomination().move('e', @_x).move('s', @_y)
     @_show(amount)
     @
@@ -41,14 +41,15 @@ Crafty.c 'DenominationPile',
         el.visible = false
 
   _createDenomination: ->
-    item = Crafty.e('Denomination, Mouse').denomination(@_denomination)
+    item = Crafty.e('Denomination').denomination(@_denomination)
+    item
     if Game.isBill(@_denomination)
-      item.scale(0.4)
+      item.scale(0.4).origin('center').attr(rotation: 90 + @_random('rotation'), x: -10 + @_random('x'), y: 40 + @_random('y'))
     else
-      item.scale(0.6)
-    item.origin('center').attr(rotation: @_random('rotation'), x: @_random('x'), y: @_random('y') + (@_yDiff * @denominations.length))
+      item.scale(0.6).attr(rotation: @_random('rotation'), x: 20 + @_random('x'), y: 20 + @_random('y'))
+      if @_denomination == 50
+        item.move('nw', 10)
     @attach(item)
-    item.bind('Click', => @trigger('Click'))
     @denominations.push(item)
     item
 
