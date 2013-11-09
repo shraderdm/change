@@ -18,19 +18,17 @@ Crafty.scene 'game', ->
     cashTray:       Crafty.e('CashTray')
     receipt:        Crafty.e('Receipt')
     ticker:         Crafty.e('Ticker')
+    score:          Crafty.e('Score').attr(x: 20, y: 20)
 
     soundControls:  Crafty.e('SoundControls').attr(x: 895, y: 14).soundtrack(soundtrack)
     foregroundEls:  Crafty.e('ForegroundElements')
 
-
   window.ui = ui
   currentCustomer = null
+  ui.score.ticker(ui.ticker)
   player = new Game.Player()
 
-
-
   # event bindings
-
 
   moveFromTrayToOut = (denomination) ->
     player.get('cashInRegister').subtract(denomination)
@@ -55,13 +53,13 @@ Crafty.scene 'game', ->
     text = "GREAT!"
     if difference > 0
       text = "You were off by #{difference.toMoneyString()}"
+    ui.score.submit(difference)
     ui.feedbackLabel.text(text).attr(alpha: 1).tween({alpha: 0}, 60)
 
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
     Game.sfx.playRegisterOpen()
     generateNewRound()
-
 
   generateNewRound = ->
     currentCustomer = new Game.Customer()

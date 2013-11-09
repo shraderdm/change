@@ -8,19 +8,17 @@ Crafty.c 'Ticker',
     .css('text-align': 'center')
     .delay(@_tick, 1000, Infinity)
 
-    @_secondsInRound = Config.game.time
-    @_remainingSeconds = @_secondsInRound
+    @_remainingSeconds = Config.game.time
 
     @_updateTicker()
 
   addTime: (time) ->
-    @_secondsInRound += time
-    @trigger('RoundTimeAdded')
+    @_remainingSeconds += time
     @_updateTicker()
 
   subtractTime: (time) ->
-    @_secondsInRound -= time
-    @trigger('RoundTimeSubtracted')
+    @_remainingSeconds -= time
+    @_remainingSeconds = Math.max(0, @_remainingSeconds)
     @_updateTicker()
 
   _tick: ->
