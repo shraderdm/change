@@ -21,10 +21,10 @@ Crafty.c 'Score',
   submit: (diff) ->
     if diff == 0
       @_score += @_combo * @SCORE_MULTIPLIER
+      Game.sfx.playCombo(@_combo)
       @_combo += 1
       @_ticker.addTime(@TIME_BONUS)
     else
-      console.log(diff)
       @_combo = 1
       @_ticker.subtractTime(Math.ceil(Math.log(diff) * @TIME_PENALTY))
 

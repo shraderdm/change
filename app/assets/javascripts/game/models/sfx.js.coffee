@@ -9,6 +9,11 @@ class SoundEffects extends Backbone.Model
       fileFormat: '/assets/coins/coin-{0}.wav'
       count: 7
 
+    combos:
+      keyFormat: 'combo{0}'
+      fileFormat: '/assets/combos/combo{0}.mp3'
+      count: 15
+
     registerClose:
       keyFormat: 'register-close'
       fileFormat: '/assets/register/close-print.wav'
@@ -41,6 +46,11 @@ class SoundEffects extends Backbone.Model
 
   playRegisterOpen: ->
     @_play(@get('registerOpen'))
+
+  playCombo: (combo) ->
+    combo = Math.min(15, combo)
+    key = @get('combos').keyFormat.format(combo)
+    Crafty.audio.play(key, 1)
 
   _play: (options) ->
     randomIdx = _.random(options.count)
