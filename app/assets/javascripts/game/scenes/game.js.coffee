@@ -21,13 +21,6 @@ Crafty.scene 'game', ->
     soundControls:  Crafty.e('SoundControls').attr(x: 895, y: 14).soundtrack(soundtrack)
     foregroundEls:  Crafty.e('ForegroundElements')
 
-  Crafty.e('TrayDenominationPile').denomination(1).attr(x: 580, y: 416)
-  Crafty.e('TrayDenominationPile').denomination(5).attr(x: 668, y: 416)
-  Crafty.e('TrayDenominationPile').denomination(50).attr(x: 844, y: 416)
-  Crafty.e('TrayDenominationPile').denomination(10).attr(x: 756, y: 416)
-  Crafty.e('TrayDenominationPile').denomination(100).attr(x: 580, y: 278)
-  Crafty.e('TrayDenominationPile').denomination(500).attr(x: 668, y: 278)
-  Crafty.e('TrayDenominationPile').denomination(1000).attr(x: 756, y: 278)
 
   window.ui = ui
   currentCustomer = null
@@ -35,15 +28,19 @@ Crafty.scene 'game', ->
 
   # event bindings
 
+
+  moveFromTrayToOut = (denomination) ->
+    player.get('cashInRegister').subtract(denomination)
+    player.get('cashOut').add(denomination)
+    Game.sfx.playDenomination(denomination)
+
+  ui.cashTray.bind 'DenominationClick', moveFromTrayToOut
+  ui.cashInRegister.bind 'ButtonClick', moveFromTrayToOut
+
+
   ui.cashOut.bind('ButtonClick', (denomination) ->
     player.get('cashOut').subtract(denomination)
     player.get('cashInRegister').add(denomination)
-    Game.sfx.playDenomination(denomination)
-  )
-
-  ui.cashInRegister.bind('ButtonClick', (denomination) ->
-    player.get('cashInRegister').subtract(denomination)
-    player.get('cashOut').add(denomination)
     Game.sfx.playDenomination(denomination)
   )
 
@@ -58,7 +55,6 @@ Crafty.scene 'game', ->
     if difference > 0
       text = "You were off by #{difference.toMoneyString()}"
     ui.feedbackLabel.text(text).attr(alpha: 1).tween({alpha: 0}, 60)
-    ui.cashTray.close()
 
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
@@ -78,4 +74,5 @@ Crafty.scene 'game', ->
   # run
 
   ui.cashInRegister.cash(player.get('cashInRegister'))
+  ui.cashTray.cash(player.get('cashInRegister'))
   generateNewRound()

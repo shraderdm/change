@@ -42,3 +42,7 @@
 .ScaleableImage{
   background-size: 100% !important;
 }
+
+.DOM{
+  -webkit-backface-visibility: hidden;
+}

@@ -16,10 +16,6 @@ Crafty.c 'TrayDenominationPile',
     @requires('2D, DOM, Mouse')
      .attr(z: 299, w: 82)
     @denominations = []
-    @bind('Click', ->
-      Game.sfx.playDenomination(@_denomination)
-      @amount(@_amount - 1)
-    )
 
   denomination: (denomination) ->
     if Game.isBill(denomination)
