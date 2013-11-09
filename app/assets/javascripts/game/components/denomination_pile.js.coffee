@@ -16,7 +16,6 @@ Crafty.c 'DenominationPile',
     _.bindAll(@, '_createDenomination')
     @requires('2D, DOM, Mouse')
     @denominations = []
-    @bind('Click', -> @amount(@_amount - 1 ))
 
   yDiff: (ydiff)->
     @_yDiff = ydiff
