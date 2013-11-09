@@ -34,17 +34,15 @@ Crafty.c 'SoundControls',
   init: ->
     _.bindAll(@, '_updateIconMuted', '_toggleMute', '_skip')
     @requires('2D')
+    @_volumeButton = Crafty.e('VolumeButton').attr(y: 0, x: 0).bind('ToggleMute', @_toggleMute)
+    @_nextButton = Crafty.e('FontAwesomeButton').attr(y: 0 , x: 30).icon('fa-forward').bind('Click', @_skip)
+    @attach(@_volumeButton)
+      .attach(@_nextButton)
 
   soundtrack: (soundtrack) ->
     @_soundtrack = soundtrack
     soundtrack.on('change:muted', @_updateIconMuted)
-    @_buildUI()
     @
-
-  _buildUI: ->
-    @_volumeButton = Crafty.e('VolumeButton').attr(y: @_y, x: @_x)
-    @_volumeButton.bind('ToggleMute', @_toggleMute)
-    @_nextButton = Crafty.e('FontAwesomeButton').attr(y: @_y , x: @_x + 30).icon('fa-forward').bind('Click', @_skip)
 
   _toggleMute: ->
     console.log('mute')

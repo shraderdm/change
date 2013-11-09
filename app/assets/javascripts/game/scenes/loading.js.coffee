@@ -5,5 +5,6 @@ Crafty.scene "loading", ->
   Crafty.load(
     _.map(Game.images, (v,k) -> v)
   , ->
+      console.log("finished loading")
       Crafty.scene('game')
   )
