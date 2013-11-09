@@ -4,7 +4,7 @@ class Game.Soundtrack extends Backbone.Model
   defaults:
     songs: [ #each row should be changed to array containing mp3, ogg, wav for each file...
       '08-BlueSkiesAndRedShoes.mp3'
-      'Lenkemz-Sewin Coins_bangincludebootleg1.mp3'
+      'Lenkemz-Sewin-Coins_bangincludebootleg1.mp3'
       'mix_n_match.mp3'
       'Soft-Chip.mp3'
     ]
