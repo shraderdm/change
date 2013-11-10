@@ -37,6 +37,7 @@ Crafty.c 'CashTray',
     else
       pile.attr(x: @columns[Game.DENOMINATIONS.indexOf(denomination)], y: @rows.coins)
     pile.bind('Click', => @trigger('DenominationClick', denomination))
+    pile.bind('Refill', => @trigger('Refill', denomination))
     @_piles[denomination] = pile
 
     @attach(pile)

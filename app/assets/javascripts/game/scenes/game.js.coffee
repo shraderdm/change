@@ -43,6 +43,11 @@ Crafty.scene 'game', ->
   ui.cashTray.bind 'DenominationClick', moveFromTrayToOut
   ui.cashOut.bind 'DenominationClick', moveBackToTray
 
+  ui.cashTray.bind 'Refill', (denomination) ->
+    ui.ticker.subtractTime(2)
+    player.get('cashInRegister').add(denomination, 10)
+
+
   @bind('KeyDown', (ev) -> submitRound() if ev.key == Crafty.keys[Config.input.submit])
   ui.submitButton.bind('Click', -> submitRound())
 

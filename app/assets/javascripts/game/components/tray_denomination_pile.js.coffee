@@ -16,6 +16,9 @@ Crafty.c 'TrayDenominationPile',
     @requires('2D, DOM, Mouse')
      .attr(z: 299, w: 82)
     @denominations = []
+    @_refill = Crafty.e("2D, DOM, Image, Mouse").image(Game.images.refill).attr(x: @_x + 5, y: @_y + 5, z: @_z + 10)
+    @attach(@_refill)
+    @_refill.bind('Click', => @trigger('Refill'))
 
   denomination: (denomination) ->
     if Game.isBill(denomination)
@@ -34,6 +37,7 @@ Crafty.c 'TrayDenominationPile',
     @
 
   _show: (x) ->
+    @_refill.attr(visible: x == 0)
     _.each @denominations, (el, idx) ->
       if idx < x
         el.visible = true

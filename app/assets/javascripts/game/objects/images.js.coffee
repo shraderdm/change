@@ -11,6 +11,8 @@ Game.images =
   receipt: '/assets/receipt-top.png'
 
 
+  refill: '/assets/refill.png'
+
   oneCent: '/assets/denominations/one-cent.png'
   fiveCent: '/assets/denominations/five-cent.png'
   tenCent: '/assets/denominations/ten-cent.png'
