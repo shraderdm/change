@@ -15,6 +15,7 @@ __UI__
 - Don't order the customer cash so "nicely" on the table.
 
 __MISC__
+_ Keyboard 1-6 + shift.
 - Pick 1-2 soundtracks and remove the rest.
 - Add main menu (with menu music?).
 - Highscore?

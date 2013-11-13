@@ -8,8 +8,11 @@ Crafty.c 'Score',
     @_score = 0
     @_combo = 1
 
+    @bind('Remove', => @_score.off())
+
   scoreModel: (score) ->
     @_score = score
+    @_score.on('change:points', @_update, @)
     @_update()
     @
 
