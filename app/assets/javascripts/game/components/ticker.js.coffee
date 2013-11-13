@@ -8,6 +8,7 @@ Crafty.c 'Ticker',
     .css('text-align': 'center')
     .delay(@_tick, 1000, Infinity)
 
+    @_declaredEnd = false
     @_remainingSeconds = Config.game.time
 
     @_updateTicker()
@@ -21,11 +22,16 @@ Crafty.c 'Ticker',
     @_remainingSeconds = Math.max(0, @_remainingSeconds)
     @_updateTicker()
 
+    @_declareEnd() if @_didRoundEnd()
+
   _tick: ->
-    return if @_didRoundEnd()
+    if @_didRoundEnd()
+      @_declareEnd()
+      return
+
     @_remainingSeconds -= 1
     @_updateTicker()
-    @trigger('RoundTimeEnded') if @_didRoundEnd()
+    @_declareEnd if @_didRoundEnd()
 
   _updateTicker: ->
     @text(@_remainingSeconds.toMMSS())
@@ -33,3 +39,8 @@ Crafty.c 'Ticker',
 
   _didRoundEnd: ->
     @_remainingSeconds == 0
+
+  _declareEnd: ->
+    if !@_declaredEnd
+      @_declaredEnd = true
+      @trigger('RoundTimeEnded')

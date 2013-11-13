@@ -4,11 +4,7 @@ Crafty.c 'Score',
     @requires('2D, DOM, Text')
     .textFont(size: '30px')
     .css('text-align': 'left')
-
-    @_score = 0
-    @_combo = 1
-
-    @bind('Remove', => @_score.off())
+    .bind('Remove', => @_score.off())
 
   scoreModel: (score) ->
     @_score = score
@@ -16,5 +12,7 @@ Crafty.c 'Score',
     @_update()
     @
 
-  _update :->
+  _update: ->
     @text(@_score.get('points'))
+
+

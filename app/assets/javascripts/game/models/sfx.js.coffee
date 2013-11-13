@@ -12,7 +12,7 @@ class SoundEffects extends Backbone.Model
     combos:
       keyFormat: 'combo{0}'
       fileFormat: '/assets/combos/combo{0}.mp3'
-      count: 15
+      count: 14
 
     registerClose:
       keyFormat: 'register-close'
@@ -48,7 +48,7 @@ class SoundEffects extends Backbone.Model
     @_play(@get('registerOpen'))
 
   playCombo: (combo) ->
-    combo = Math.min(15, combo)
+    combo = Math.min(14, combo - 1)
     key = @get('combos').keyFormat.format(combo)
     Crafty.audio.play(key, 1)
 
