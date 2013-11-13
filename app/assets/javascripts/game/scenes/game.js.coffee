@@ -18,7 +18,8 @@ Crafty.scene 'game', ->
     cashTray:       Crafty.e('CashTray')
     receipt:        Crafty.e('Receipt')
     ticker:         Crafty.e('Ticker')
-    score:          Crafty.e('Score').attr(x: 560, y: 7)
+    score:          Crafty.e('Score').attr(x: 574, y: 7)
+    combo:          Crafty.e('Combo').attr(x: 559, y: 24)
 
     soundControls:  Crafty.e('SoundControls').attr(x: 895, y: 14).soundtrack(soundtrack)
     foregroundEls:  Crafty.e('ForegroundElements')
@@ -77,5 +78,6 @@ Crafty.scene 'game', ->
 
   # run
   ui.score.scoreModel(score)
+  ui.combo.scoreModel(score)
   ui.cashTray.cash(player.get('cashInRegister'))
   generateNewRound()
