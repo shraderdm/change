@@ -1,35 +1,17 @@
 Crafty.c 'Score',
 
-  TIME_PENALTY: 1
-  TIME_BONUS: 1
-  SCORE_MULTIPLIER: 100
-
   init: ->
     @requires('2D, DOM, Text')
-    .textFont(size: '39px')
-    .css('text-align': 'center')
+    .textFont(size: '30px')
+    .css('text-align': 'left')
 
     @_score = 0
     @_combo = 1
 
-    @_update()
-
-  ticker: (ticker) ->
-    @_ticker = ticker
-    @
-
-  submit: (diff) ->
-    if diff == 0
-      @_score += @_combo * @SCORE_MULTIPLIER
-      Game.sfx.playCombo(@_combo)
-      @_combo += 1
-      @_ticker.addTime(@TIME_BONUS)
-    else
-      @_combo = 1
-      @_ticker.subtractTime(Math.ceil(Math.log(diff) * @TIME_PENALTY))
-
+  scoreModel: (score) ->
+    @_score = score
     @_update()
     @
 
   _update :->
-    @text(@_score)
+    @text(@_score.get('points'))
