@@ -49,7 +49,6 @@ class SoundEffects extends Backbone.Model
 
   playCombo: (combo) ->
     combo = Math.min(14, combo - 1)
-    console.log(combo)
     key = @get('combos').keyFormat.format(combo)
     Crafty.audio.play(key, 1)
 
