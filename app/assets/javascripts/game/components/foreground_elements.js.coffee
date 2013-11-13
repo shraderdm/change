@@ -26,9 +26,9 @@ Crafty.c 'ForegroundElements',
     @hand3  = Crafty.e('2D, DOM, Image').image(Game.images.hand3).attr(x: 854, y: 333, z: 403)
 
     @shadow.alpha = 0.5
-#
-#    @shadow.tweenRepeat(
-#      y: 200
-#    )
+
+    @shadow.tweenRepeat(
+      y: 200
+    )
 
     @
