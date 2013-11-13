@@ -1,7 +1,7 @@
 #= require crafty
 #= require_self
 #= require ./config
-#= require_directory ./objects
+#= require_directory ./assets
 #= require_directory ./components/generic
 #= require_directory ./components
 #= require_directory ./models
