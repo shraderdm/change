@@ -36,8 +36,8 @@ Crafty.scene 'game', ->
     Game.sfx.playDenomination(denomination)
 
   moveBackToTray = (denomination) ->
-    player.get('cashInRegister').add(denomination)
     player.get('cashOut').subtract(denomination)
+    player.get('cashInRegister').add(denomination)
     Game.sfx.playDenomination(denomination)
 
   ui.cashTray.bind 'DenominationClick', moveFromTrayToOut
@@ -48,8 +48,18 @@ Crafty.scene 'game', ->
     player.get('cashInRegister').add(denomination, 10)
 
 
-  @bind('KeyDown', (ev) -> submitRound() if ev.key == Crafty.keys[Config.input.submit])
+  @bind 'KeyDown', (ev) ->
+    if (ev.key == Config.input.submit) or (ev.key == Config.input.otherSubmit)
+      submitRound()
+    else
+      _.each Game.DENOMINATIONS, (d)->
+        if ev.key == Config.input.money[d]
+          if ev.shiftKey
+            moveBackToTray(d)
+          else
+            moveFromTrayToOut(d)
   ui.submitButton.bind('Click', -> submitRound())
+
 
   # methods
 
