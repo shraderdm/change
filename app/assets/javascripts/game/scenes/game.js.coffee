@@ -8,7 +8,7 @@ Crafty.scene 'game', ->
   ui =
     backgroundEls:  Crafty.e('BackgroundElements')
 
-    feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 250, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
+    feedbackLabel:  Crafty.e('Notification').attr(x: 160, y: 250, w: 260, h: 40)
 
     customerCash:   Crafty.e('CashPile').attr(x: 20, y: 115).dir('down')
     cashOut:        Crafty.e('CashPile').attr(x: 20, y: 400).dir('up')
@@ -68,8 +68,10 @@ Crafty.scene 'game', ->
     text = "GREAT!"
     if difference > 0
       text = "You were off by #{difference.toMoneyString()}"
+      ui.feedbackLabel.showNegative(text)
+    else
+      ui.feedbackLabel.showPositive("GREAT!")
     score.submit(difference)
-    ui.feedbackLabel.text(text).attr(alpha: 1).tween({alpha: 0}, 60)
 
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
