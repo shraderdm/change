@@ -1,11 +1,16 @@
 class Game.Customer extends Backbone.Model
 
+  _prices:
+    main: [0, 100, 100, 200, 300, 400, 400, 500, 600, 700, 800, 900, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900]
+    part: [0, 0, 5, 10, 20, 29, 30, 40, 45, 49, 50, 50, 50, 56, 69, 79, 80, 90, 99, 99, 99, 99]
+
+
   initialize: ->
     @set('price', @_randomizePrice())
     @set('paid', @_randomizePaid())
 
   _randomizePrice: ->
-    _.sample([499, 1230, 1105, 199, 599, 250, 769, 1940, 156, 79,50,99,24, 299,249,229])
+    _.sample(@_prices.main) + _.sample(@_prices.part)
 
   _randomizePaid: ->
     paid = new Game.Cash()
