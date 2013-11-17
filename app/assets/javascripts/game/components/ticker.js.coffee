@@ -34,6 +34,7 @@ Crafty.c 'Ticker',
     @_declareEnd if @_didRoundEnd()
 
   _updateTicker: ->
+    @_ohNo() if @_remainingSeconds < 10
     @text(@_remainingSeconds.toMMSS())
     @trigger('RoundTimeChanged')
 
@@ -44,3 +45,6 @@ Crafty.c 'Ticker',
     if !@_declaredEnd
       @_declaredEnd = true
       @trigger('RoundTimeEnded')
+
+  _ohNo: ->
+    @addComponent('oh-no')
