@@ -24,6 +24,12 @@ Crafty.c 'Receipt',
     @bind('TweenEnd', @_showCustomerPrice)
     @
 
+  yPos: (@_ypos) ->
+    @
+
+  heightForAnimation: (@_height) ->
+    @
+
   animateUp: ->
     @attr(y: @_ypos + @_height, h: 0)
     .tween({
