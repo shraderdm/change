@@ -100,9 +100,13 @@ Crafty.scene 'game', ->
     undoStack = []
 
 
+  endGame = ->
+    alert("Time Ended! Your score:#{score.get('points')}") # temporary
+    Crafty.scene('menu')
+
   # run
   ui.score.scoreModel(score)
   ui.combo.scoreModel(score)
   ui.cashTray.cash(player.get('cashInRegister'))
-  ui.ticker.bind('RoundTimeEnded', -> alert('Time Ended!'))
+  ui.ticker.bind('RoundTimeEnded', endGame)
   generateNewRound()
