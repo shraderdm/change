@@ -54,7 +54,7 @@ Crafty.scene 'game', ->
       submitRound()
     else
       _.each Game.DENOMINATIONS, (d)->
-        if ev.key == Config.input.money[d]
+        if ev.key == Config.input.money[d] or ev.key == Config.input.alt_money[d]
           if ev.shiftKey
             moveBackToTray(d)
           else
