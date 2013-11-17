@@ -5,5 +5,5 @@ Crafty.scene "loading", ->
   assets = _.map(Game.images, (v,k) -> v)
   Crafty.load(assets, ->
       console.log("finished loading")
-      Crafty.scene('game')
+      Crafty.scene('menu')
   )
