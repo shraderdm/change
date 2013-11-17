@@ -14,7 +14,14 @@ Crafty.c 'CashTray',
     _.each Game.DENOMINATIONS, (denomination) =>
       @_createDenominationPile(denomination)
 
-    @_submitButton = Crafty.e('2D, DOM, Color, Mouse, Foo').attr(x: @_x, y: @_y + @_h - 20, h: 20, w: @_w, z: 6).bind('Click', => @trigger('Submit'))
+    @_submitButton = Crafty.e('2D, DOM, Color, Mouse, Text')
+      .attr(x: @_x, y: @_y + @_h - 18, h: 20, w: @_w, z: 6)
+      .bind('Click', => @trigger('Submit'))
+      .text('PUSH')
+      .css('text-align': 'center')
+      .textFont(size: '16px/20px', weight: 'bold')
+
+
     @attach(@_submitButton)
 
     @
