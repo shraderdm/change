@@ -8,11 +8,10 @@ Crafty.scene 'game', ->
   ui =
     backgroundEls:  Crafty.e('BackgroundElements')
 
-    submitButton:   Crafty.e('2D, DOM, Mouse, Color, Text').attr(x: 160, y: 280, w: 260, h: 40).color('#9482BA').textFont(size: '16px/40px').textColor('#FFFFFF').css('text-align': 'center').text('Submit')
     feedbackLabel:  Crafty.e('2D, DOM, Text, Tween').attr(x: 160, y: 250, w: 260, h: 40).textFont(size: '16px').css('text-align': 'center')
 
     customerCash:   Crafty.e('CashPile').attr(x: 20, y: 115).dir('down')
-    cashOut:        Crafty.e('CashPile').attr(x: 20, y: 450).dir('up')
+    cashOut:        Crafty.e('CashPile').attr(x: 20, y: 400).dir('up')
 
     cashRegister:   Crafty.e('2D, DOM, Image').image(Game.images.cashRegister).attr(x: 560, y: 50, z: 500)
     cashTray:       Crafty.e('CashTray')
@@ -59,8 +58,8 @@ Crafty.scene 'game', ->
             moveBackToTray(d)
           else
             moveFromTrayToOut(d)
-  ui.submitButton.bind('Click', -> submitRound())
 
+  ui.cashTray.bind('Submit', -> submitRound())
 
   # methods
 
