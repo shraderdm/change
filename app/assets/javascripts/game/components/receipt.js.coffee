@@ -37,6 +37,7 @@ Crafty.c 'Receipt',
         h: @_height
       }, 30)
     @customePrice.alpha = 0
+    @
 
   _showCustomerPrice: ->
     @customePrice.alpha = 1
