@@ -87,9 +87,12 @@ Crafty.scene 'game', ->
     ui.cashOut.cash(player.get('cashOut'))
     Game.sfx.playRegisterClose()
 
+  endGame = ->
+    alert('Time Ended!')
+
   # run
   ui.score.scoreModel(score)
   ui.combo.scoreModel(score)
   ui.cashTray.cash(player.get('cashInRegister'))
-  ui.ticker.bind('RoundTimeEnded', -> alert('Time Ended!'))
+  ui.ticker.bind('RoundTimeEnded', endGame)
   generateNewRound()
