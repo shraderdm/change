@@ -13,7 +13,7 @@ Crafty.c 'TrayDenominationPile',
 
   init: ->
     _.bindAll(@, '_createDenomination')
-    @requires('2D, DOM, Mouse')
+    @requires('2D, DOM')
      .attr(z: 299, w: 82)
     @denominations = []
     @_refill = Crafty.e("2D, DOM, Image, Mouse").image(Game.images.refill).attr(x: @_x + 5, y: @_y + 5, z: @_z + 10)
@@ -45,7 +45,7 @@ Crafty.c 'TrayDenominationPile',
         el.visible = false
 
   _createDenomination: ->
-    item = Crafty.e('Denomination').denomination(@_denomination)
+    item = Crafty.e('Denomination, Mouse').denomination(@_denomination)
     item
     if Game.isBill(@_denomination)
       item.scale(0.4).origin('center').attr(rotation: 90 + @_random('rotation'), x: -10 + @_random('x'), y: 40 + @_random('y'))
@@ -54,6 +54,7 @@ Crafty.c 'TrayDenominationPile',
       if @_denomination == 50
         item.move('nw', 10)
     @attach(item)
+    item.bind('Click', => @trigger('Click'))
     @denominations.push(item)
     item
 
