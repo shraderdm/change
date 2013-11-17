@@ -7,10 +7,22 @@ Crafty.scene "menu", ->
 
   Game.sfx.playRegisterOpen()
 
-  showButton = ->
-    Crafty.e("2D, Mouse, DOM, Text, Button").text("Start Game").attr(x: -130, y: 50, w: 260, h:42).bind('Click', ->
-      start()
-    )
+  showButton = Crafty.e("2D, Mouse, DOM, Text, Button")
+    .text("Start Game")
+    .textFont(size: '20px')
+    .textColor("#373838")
+    .attr(x: 300, y: 800, w: 360, h:10, z:1001)
+    .bind('Click', -> start())
+
+  helpButton = Crafty.e("2D, Mouse, DOM, Text, Button")
+  .text("Help")
+  .textFont(size: '20px')
+  .textColor("#373838")
+  .attr(x: 300, y: 850, w: 360, h:10, z:1001)
+  .bind('Click', -> help())
+
+  recipet.attach(showButton)
+  recipet.attach(helpButton)
 
   startWithSpace = (e) =>
     return unless e.key == Crafty.keys['SPACE']
@@ -19,5 +31,8 @@ Crafty.scene "menu", ->
   start = =>
     @unbind('KeyDown', startWithSpace)
     Crafty.scene "game"
+
+  help: =>
+    # do something.
 
   @bind('KeyDown', startWithSpace)
