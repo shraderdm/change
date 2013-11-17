@@ -7,6 +7,8 @@ window.Config =
   input:
     submit: Crafty.keys.SPACE
     otherSubmit: Crafty.keys.ENTER
+    undo: Crafty.keys.BACKSPACE
+    alt_undo: Crafty.keys.DELETE
     money:
       1: Crafty.keys['1']
       5: Crafty.keys['2']

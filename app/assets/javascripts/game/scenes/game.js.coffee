@@ -27,18 +27,27 @@ Crafty.scene 'game', ->
   currentCustomer = null
   player = new Game.Player()
   score = new Game.Score(ticker:ui.ticker)
+  undoStack = []
 
   # event bindings
 
-  moveFromTrayToOut = (denomination) ->
+  moveFromTrayToOut = (denomination, skipUndo = false) ->
     player.get('cashInRegister').subtract(denomination)
     player.get('cashOut').add(denomination)
+    undoStack.push(denomination) unless skipUndo
     Game.sfx.playDenomination(denomination)
 
-  moveBackToTray = (denomination) ->
+  moveBackToTray = (denomination, skipUndo = false) ->
     player.get('cashOut').subtract(denomination)
     player.get('cashInRegister').add(denomination)
+    undoStack.push(-1 * denomination) unless skipUndo
     Game.sfx.playDenomination(denomination)
+
+  undo = ->
+    top = undoStack.pop()
+    if (top)
+      denomination = Math.abs(top)
+      if (top > 0) then moveBackToTray(denomination, true) else moveFromTrayToOut(denomination, true)
 
   ui.cashTray.bind 'DenominationClick', moveFromTrayToOut
   ui.cashOut.bind 'DenominationClick', moveBackToTray
@@ -47,9 +56,12 @@ Crafty.scene 'game', ->
     ui.ticker.subtractTime(2)
     player.get('cashInRegister').add(denomination, 10)
 
-
   @bind 'KeyDown', (ev) ->
-    if (ev.key == Config.input.submit) or (ev.key == Config.input.otherSubmit)
+    if ev.key == Config.input.undo or ev.key == Config.input.alt_undo
+      ev.originalEvent.preventDefault()
+      ev.originalEvent.stopPropagation()
+      undo()
+    else if (ev.key == Config.input.submit) or (ev.key == Config.input.otherSubmit)
       submitRound()
     else
       _.each Game.DENOMINATIONS, (d)->
@@ -75,8 +87,8 @@ Crafty.scene 'game', ->
 
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
-    Game.sfx.playRegisterOpen()
     generateNewRound()
+    Game.sfx.playRegisterOpen()
 
   generateNewRound = ->
     currentCustomer = new Game.Customer()
@@ -85,7 +97,8 @@ Crafty.scene 'game', ->
     ui.cashTray.open()
     ui.customerCash.cash(currentCustomer.get('paid'))
     ui.cashOut.cash(player.get('cashOut'))
-    Game.sfx.playRegisterClose()
+    undoStack = []
+
 
   # run
   ui.score.scoreModel(score)
