@@ -88,7 +88,8 @@ Crafty.scene 'game', ->
     Game.sfx.playRegisterClose()
 
   endGame = ->
-    alert('Time Ended!')
+    alert("Time Ended! Your score:#{score.get('points')}") # temporary
+    Crafty.scene('menu')
 
   # run
   ui.score.scoreModel(score)
