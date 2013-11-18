@@ -24,6 +24,11 @@ class SoundEffects extends Backbone.Model
       fileFormat: '/assets/register/open.mp3'
       count: 1
 
+    comboBroken:
+      keyFormat: 'combo-broken'
+      fileFormat: '/assets/combos/combo-broken.mp3'
+      count: 1
+
 
   initialize: ->
     _.each @attributes, (value, key) =>
@@ -40,6 +45,9 @@ class SoundEffects extends Backbone.Model
 
   playCoin: ->
     @_play(@get('coins'))
+
+  playComboBroken: ->
+    @_play(@get('comboBroken'))
 
   playRegisterClose: ->
     @_play(@get('registerClose'))

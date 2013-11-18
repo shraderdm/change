@@ -99,8 +99,9 @@ Crafty.scene 'game', ->
 
 
   endGame = ->
-    alert("Time Ended! Your score:#{score.get('points')}") # temporary
-    Crafty.scene('menu')
+    Crafty.e('Receipt').attr(x:300, y:40, w: 360, h:600, z:2000).yPos(40).heightForAnimation(600).animateUp()
+#    alert("Time Ended! Your score:#{score.get('points')}") # temporary
+#    Crafty.scene('menu')
 
   # run
   ui.score.scoreModel(score)

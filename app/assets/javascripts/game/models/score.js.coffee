@@ -23,6 +23,7 @@ class Game.Score extends Backbone.Model
 
   submitFailure: (diff) ->
     @set('combo', @defaults.combo)
+    @trigger('failure')
     @get('ticker').subtractTime(Math.ceil(@diffFailureTransform(diff) * @TIME_PENALTY_MULTIPLIER_PER_FAILURE))
 
   diffFailureTransform: (diff) ->
