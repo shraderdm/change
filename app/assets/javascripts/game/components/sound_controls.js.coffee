@@ -42,6 +42,7 @@ Crafty.c 'SoundControls',
   soundtrack: (soundtrack) ->
     @_soundtrack = soundtrack
     soundtrack.on('change:muted', @_updateIconMuted)
+    @_updateIconMuted()
     @
 
   _toggleMute: ->

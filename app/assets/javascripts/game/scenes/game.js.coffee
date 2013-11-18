@@ -1,7 +1,5 @@
 Crafty.scene 'game', ->
   Crafty.background('white')
-  soundtrack = new Game.Soundtrack()
-  soundtrack.start()
 
   # initialization
 
@@ -20,7 +18,7 @@ Crafty.scene 'game', ->
     score:          Crafty.e('Score').attr(x: 574, y: 7)
     combo:          Crafty.e('Combo').attr(x: 559, y: 24)
 
-    soundControls:  Crafty.e('SoundControls').attr(x: 895, y: 14).soundtrack(soundtrack)
+    soundControls:  Crafty.e('SoundControls').attr(x: 895, y: 14).soundtrack(Game.soundtrack)
     foregroundEls:  Crafty.e('ForegroundElements')
 
   window.ui = ui

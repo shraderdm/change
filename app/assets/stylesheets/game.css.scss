@@ -62,7 +62,17 @@
 
 .Button {
   text-align: center;
-  :hover {
+  margin: 0 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(black, 0.5);
+  @include box-sizing(border-box);
+  color: #373838;
+  &:last-child{
+    border-bottom: none;
+  }
+  &:hover {
+    background: rgba(black, 0.5);
+    border: none;
     color: white;
   }
 }
