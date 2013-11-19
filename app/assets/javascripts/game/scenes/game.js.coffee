@@ -106,7 +106,7 @@ Crafty.scene 'game', ->
   endGame = ->
     ended = true
     Crafty.e('Modal')
-    Crafty.e('MenuUI')
+    Crafty.e('MenuUI').titleText('Game Over')
 
   # run
   ui.score.scoreModel(score)
