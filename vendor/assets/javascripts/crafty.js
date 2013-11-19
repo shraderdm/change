@@ -1,3 +1,12 @@
+// !!! NOTE !!!! THIS IS MODIFIED (Image Module)
+// !!! NOTE !!!! THIS IS MODIFIED (Image Module)
+// !!! NOTE !!!! THIS IS MODIFIED (Image Module)
+// !!! NOTE !!!! THIS IS MODIFIED (Image Module)
+// !!! NOTE !!!! THIS IS MODIFIED (Image Module)
+// !!! NOTE !!!! THIS IS MODIFIED (Image Module)
+// !!! NOTE !!!! THIS IS MODIFIED (Image Module)
+// !!! NOTE !!!! THIS IS MODIFIED (Image Module)
+
 /*!
 * Crafty v0.5.4
 * http://craftyjs.com
