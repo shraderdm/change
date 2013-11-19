@@ -105,9 +105,8 @@ Crafty.scene 'game', ->
 
   endGame = ->
     ended = true
-
-#    Crafty.e('Receipt').attr(x:300, y:40, w: 360, h:600, z:2000).yPos(40).heightForAnimation(600).animateUp()
-    setTimeout((=> @bind 'KeyDown', -> Crafty.scene('menu')), 1000)
+    Crafty.e('Modal')
+    Crafty.e('MenuUI')
 
   # run
   ui.score.scoreModel(score)

@@ -3,7 +3,7 @@ Crafty.c 'CustomerPrice',
   init: ->
     @requires('2D, DOM, Text')
     .textFont(size: '30px')
-    .attr(w: 110, h: 40, x: 0, y: 50, z: 521)
+    .attr(w: 110, h: 40, x: 0, y: 50, z: 520)
     .css('text-align': 'center', 'text-decoration': 'underline')
 
   customer: (customer) ->
