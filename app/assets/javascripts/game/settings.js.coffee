@@ -10,3 +10,14 @@ class Game.Settings
       false
     else
       value
+
+  hasSavedHighscore: ->
+    value = store.get('highscore')
+    value != undefined
+
+  saveHighscore: (score) ->
+    value = store.get('highscore')
+    if value == undefined
+      store.set('highscore', score)
+    else
+      store.set('highscore', score) if score > value

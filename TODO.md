@@ -9,7 +9,6 @@
 - Receive partial points when wrong.
 
 *UI*
-- Highscore.
 - Instructions (show up first time).
 
 *SFX*

@@ -105,6 +105,7 @@ Crafty.scene 'game', ->
 
   endGame = ->
     ended = true
+    window.settings.saveHighscore(score.get('points'))
     Crafty.e('Modal')
     Crafty.e('MenuUI').titleText('Game Over')
 
