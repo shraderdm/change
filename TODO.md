@@ -5,9 +5,15 @@
 - Fix soundtracks overlapping (happens when restarting?)
 - Fix missing 'bad' sound only playing once.
 
+*Gameplay*
+- Receive partial points when wrong.
+
 *UI*
 - Highscore.
 - Instructions (show up first time).
+
+*SFX*
+- Update combo and comboBreak sounds to something more "8bit"?
 
 *GFX*
 - Animate the octocat tentacles when performing actions.
