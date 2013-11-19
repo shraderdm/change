@@ -5,9 +5,6 @@
 - Fix soundtracks overlapping (happens when restarting?)
 - Fix missing 'bad' sound only playing once.
 
-*Gameplay*
-- Receive partial points when wrong.
-
 *UI*
 - Instructions (show up first time).
 
