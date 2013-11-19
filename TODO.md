@@ -1,5 +1,6 @@
 *Bugs*
-- Fix loading.
+- Fix assets loading (I see in the chrome network tab that assets are loaded on demand in the game).
+- Fix keyboard refill.
 
 *UI*
 - Instructions (show up first time).
