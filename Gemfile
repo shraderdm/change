@@ -15,7 +15,6 @@ gem 'compass-rails', '~> 2.0.alpha.0'
 
 group :development do
   gem 'powder'
-  gem 'quiet_assets'
 end
 
 gem 'rails_12factor', group: :production

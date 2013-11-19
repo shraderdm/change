@@ -30,12 +30,14 @@ Crafty.scene 'game', ->
   # event bindings
 
   moveFromTrayToOut = (denomination, skipUndo = false) ->
+    return if ended
     player.get('cashInRegister').subtract(denomination)
     player.get('cashOut').add(denomination)
     undoStack.push(denomination) unless skipUndo
     Game.sfx.playDenomination(denomination)
 
   moveBackToTray = (denomination, skipUndo = false) ->
+    return if ended
     player.get('cashOut').subtract(denomination)
     player.get('cashInRegister').add(denomination)
     undoStack.push(-1 * denomination) unless skipUndo
@@ -55,6 +57,8 @@ Crafty.scene 'game', ->
     player.get('cashInRegister').add(denomination, 10)
 
   @bind 'KeyDown', (ev) ->
+    return if ended
+
     if ev.key == Config.input.undo or ev.key == Config.input.alt_undo
       ev.originalEvent.preventDefault()
       ev.originalEvent.stopPropagation()
@@ -69,7 +73,7 @@ Crafty.scene 'game', ->
           else
             moveFromTrayToOut(d)
 
-  ui.cashTray.bind('Submit', -> submitRound())
+  ui.cashTray.bind('Submit', -> submitRound() if !ended)
 
   # methods
 
@@ -97,14 +101,17 @@ Crafty.scene 'game', ->
     ui.cashOut.cash(player.get('cashOut'))
     undoStack = []
 
+  ended = false
 
   endGame = ->
-    alert("Time Ended! Your score:#{score.get('points')}") # temporary
-    Crafty.scene('menu')
+    ended = true
+    Crafty.e('Modal')
+    Crafty.e('MenuUI').titleText('Game Over')
 
   # run
   ui.score.scoreModel(score)
   ui.combo.scoreModel(score)
   ui.cashTray.cash(player.get('cashInRegister'))
   ui.ticker.bind('RoundTimeEnded', endGame)
+  setTimeout((-> Game.sfx.playRegisterClose()), 200)
   generateNewRound()
