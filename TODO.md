@@ -5,7 +5,9 @@
 - Fix missing 'bad' sound only playing once.
 
 *UI*
-- Highscore.
+
+*SFX*
+- Update combo and comboBreak sounds to something more "8bit"?
 
 *GFX*
 - Animate the octocat tentacles when performing actions.

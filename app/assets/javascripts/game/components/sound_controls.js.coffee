@@ -19,7 +19,6 @@ Crafty.c 'VolumeButton',
   init: ->
     @requires('FontAwesomeButton')
     .bind('Click', => @trigger('ToggleMute'))
-    .icon(@_states.on)
 
   updateMuteIcon: (muted) ->
     if muted
@@ -46,8 +45,8 @@ Crafty.c 'SoundControls',
     @
 
   _toggleMute: ->
-    console.log('mute')
     @_soundtrack.toggleMute()
+    window.settings.toggleMute(@_soundtrack.get('muted'))
 
   _updateIconMuted: ->
     @_volumeButton.updateMuteIcon(@_soundtrack.get('muted'))

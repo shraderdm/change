@@ -17,6 +17,11 @@ class Game.Soundtrack extends Backbone.Model
     @_chooseRandomSong() unless @get('currentSong')?
     @_loadTrack()
 
+    if window.settings.isSoundMuted()
+      Crafty.audio.mute()
+      @set('muted', true)
+
+
   start: ->
     @play()
     @_startLoading()

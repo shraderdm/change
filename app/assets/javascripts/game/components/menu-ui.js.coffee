@@ -26,8 +26,14 @@ Crafty.c 'MenuUI',
     recipet.attach(helpButton)
     recipet.attach(credits)
 
+    if window.settings.hasSavedHighscore()
+      recipet.attach(Crafty.e('2D, DOM, Text, Highscore').textFont(size: '25px').textColor("#373838").attr(w: 360, x: 300, y: 350, z: 1001).text('Highscore'))
+      recipet.attach(Crafty.e('2D, DOM, Text, Logo').textFont(size: '20px').textColor("#656347").attr(w: 360, x: 300, y: 400, z: 1001).text(store.get('highscore')))
+#
     @bind('KeyDown', @_startWithSpace)
+
     recipet.animateUp()
+
 
   titleText: (text) ->
     @logo.text(text)
