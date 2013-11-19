@@ -25,6 +25,12 @@ Crafty.c "Walkthrough",
       .setter('text', @text)
       .setter('highlight', @highlight)
     @_highlight = Crafty.e('2D, DOM, Highlight').attr(w: 60, h: 60, x: -60, y: -60, z: 1001)
+    @_skip = Crafty.e('2D, DOM, Text, Mouse, Skip')
+            .attr(w: 32, h: 28, z: 1003, x: 330+320-32, y:200)
+            .text('skip')
+            .textFont(size: '11px/28px')
+            .bind('Click', => @trigger('Ended'))
+            .css('text-align': 'center')
     @_currentStep = -1
     @step()
     @

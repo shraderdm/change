@@ -161,3 +161,14 @@
   padding: 10px 0;
   border-top: 1px dashed rgba(black, 0.2);
 }
+
+.Skip{
+  color: black;
+  text-decoration: underline;
+  text-align: right;
+  @include border-top-right-radius(3px);
+  &:hover{
+    background: rgba(black, 0.9);
+    color: #B1F291;
+  }
+}
