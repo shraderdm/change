@@ -1,6 +1,6 @@
 Crafty.c "Walkthrough",
   steps: [
-    {title: 'Welcome to the CHANG€', text: 'CHANG€ is an intense game about the extreme life of supermarket cashiers'}
+    {title: 'A Quick Tutorial', text: 'CHANG€ is an intense game about the eXtreme life of supermarket cashiers'}
     {highlight:{x: 800, y: 100}, title: 'Time is money', text: 'The objective in CHANG€ is to get as many points in 60 seconds'}
     {highlight:{x: 615, y: 125}, title: 'The Customer is always right...', text: 'Each round a new customer will come up and a receipt will be printed with the total he has to pay'}
     {highlight:{x: 360, y: 100}, title: '... but annoying', text: 'He will place a certain amount of cash in front of you'}

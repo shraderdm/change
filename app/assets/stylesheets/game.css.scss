@@ -114,6 +114,15 @@
       @include inline-block;
     }
   }
+  .text{
+    &:after{
+      content: 'click anywhere to continue';
+      font-size: 11px;
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+    }
+  }
 }
 
 .Highlight{
