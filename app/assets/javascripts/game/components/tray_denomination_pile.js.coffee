@@ -16,7 +16,7 @@ Crafty.c 'TrayDenominationPile',
     @requires('2D, DOM')
      .attr(z: 299, w: 82)
     @denominations = []
-    @_refill = Crafty.e("2D, DOM, Image, Mouse").image(Game.images.refill).attr(x: @_x + 5, y: @_y + 5, z: @_z + 10)
+    @_refill = Crafty.e("2D, DOM, Image, Mouse, Refill").image(Game.images.refill).attr(x: @_x + 5, y: @_y + 5, z: @_z + 10)
     @attach(@_refill)
     @_refill.bind('Click', => @trigger('Refill'))
 

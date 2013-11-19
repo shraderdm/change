@@ -11,7 +11,7 @@ Crafty.scene 'game', ->
     customerCash:   Crafty.e('CashPile').attr(x: 20, y: 115).dir('down')
     cashOut:        Crafty.e('CashPile').attr(x: 20, y: 400).dir('up')
 
-    cashRegister:   Crafty.e('2D, DOM, Image').image(Game.images.cashRegister).attr(x: 560, y: 50, z: 500)
+    cashRegister:   Crafty.e('CashRegister')
     cashTray:       Crafty.e('CashTray')
     receipt:        Crafty.e('Receipt')
     ticker:         Crafty.e('Ticker')
@@ -105,7 +105,7 @@ Crafty.scene 'game', ->
 
   endGame = ->
     ended = true
-    Crafty.e('Modal')
+    Crafty.e('Modal').fadeIn()
     Crafty.e('MenuUI').titleText('Game Over')
 
   # run

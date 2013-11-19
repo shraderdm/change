@@ -8,6 +8,7 @@ Crafty.c 'Denomination',
   denomination: (denomination) ->
     @_denomination = denomination
     @image(@_imageMapping[denomination])
+    @addComponent(@_classMapping[denomination])
 
   _imageMapping:
     1: Game.images.oneCent
@@ -17,3 +18,12 @@ Crafty.c 'Denomination',
     100: Game.images.oneDollar
     500: Game.images.fiveDollar
     1000: Game.images.tenDollar
+
+  _classMapping:
+    1: 'oneCent'
+    5: 'fiveCent'
+    10: 'tenCent'
+    50: 'fiftyCent'
+    100: 'oneDollar'
+    500: 'fiveDollar'
+    1000: 'tenDollar'

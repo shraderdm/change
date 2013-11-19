@@ -7,6 +7,7 @@ class Game.Soundtrack extends Backbone.Model
       'mix_n_match.mp3'
       'Soft-Chip.mp3'
     ]
+    isPlaying: false
     directory: '/assets/'
     currentSong: null
     muted: false
@@ -33,6 +34,7 @@ class Game.Soundtrack extends Backbone.Model
     Crafty.audio.play(@_trackName(), 1, 0.3)
     Crafty.audio.sounds[@_trackName()].obj.addEventListener "ended", _.once =>
       setTimeout((=> @playNextRandomTrack()), @TRACK_DELAY)
+    @set('isPlaying': true)
 
   toggleMute: ->
     Crafty.audio.toggleMute()

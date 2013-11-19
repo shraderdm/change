@@ -8,15 +8,13 @@ Crafty.c 'MenuUI',
     credits = Crafty.e('2D, DOM, Text').text('A game by Rothschild Games<br>@shayhdavidson & @yonbergman').textFont(size: '12px').textColor("#373838").attr(w: 320, x: 320, y: 500, z: 1001).css('text-align':'center')
 
     Game.sfx.playRegisterOpen()
-    Crafty.e('SoundControls').attr(x: 895, y: 14).soundtrack(Game.soundtrack)
-    Game.soundtrack.start()
 
     showButton = Crafty.e("Button")
     .text("Start Game")
     .attr(x: 300, y: 200)
     .bind('Click', => @_start())
 
-    helpButton = Crafty.e("Button")
+    helpButton = Crafty.e("Button, Last")
     .text("Help")
     .attr(x: 300, y: 240)
     .bind('Click', => @_help())
@@ -43,4 +41,5 @@ Crafty.c 'MenuUI',
     Crafty.scene "game"
 
   _help: ->
-    # do something.
+    @unbind('KeyDown', @_startWithSpace)
+    Crafty.scene "tutorial"

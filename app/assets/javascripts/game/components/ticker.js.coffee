@@ -48,3 +48,8 @@ Crafty.c 'Ticker',
 
   _ohNo: ->
     @addComponent('oh-no')
+
+  walkthrough: (time)->
+    @_updateTicker = (->)
+    @text(time)
+    @
