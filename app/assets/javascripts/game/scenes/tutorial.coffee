@@ -21,7 +21,7 @@ Crafty.scene 'tutorial', ->
 
   window.ui = ui
   currentCustomer = new Game.Customer()
-  currentCustomer.set(price: 389, paid: new Game.Cash(500: 1))
+  currentCustomer.set(price: 350, paid: new Game.Cash(500: 1))
   player = new Game.Player()
   player.get('cashInRegister').subtract(1000, 10)
   player.get('cashOut').add(100, 1)
@@ -42,4 +42,6 @@ Crafty.scene 'tutorial', ->
     if ev.key == Config.input.submit
       ui.walkthrough.step()
 
-  ui.walkthrough.bind('Ended', => Crafty.scene('menu'))
+  ui.walkthrough.bind 'Ended', =>
+    Game.settings.sawTutorial()
+    Crafty.scene('menu')

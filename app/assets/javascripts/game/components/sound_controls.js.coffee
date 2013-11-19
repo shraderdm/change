@@ -46,7 +46,7 @@ Crafty.c 'SoundControls',
 
   _toggleMute: ->
     @_soundtrack.toggleMute()
-    window.settings.toggleMute(@_soundtrack.get('muted'))
+    Game.settings.toggleMute(@_soundtrack.get('muted'))
 
   _updateIconMuted: ->
     @_volumeButton.updateMuteIcon(@_soundtrack.get('muted'))

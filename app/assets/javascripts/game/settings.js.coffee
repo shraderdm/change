@@ -21,3 +21,14 @@ class Game.Settings
       store.set('highscore', score)
     else
       store.set('highscore', score) if score > value
+
+
+  didSeeTutorial: ->
+    value = store.get('tutorial')
+    if value == undefined
+      false
+    else
+      value
+
+  sawTutorial: ->
+    store.set('tutorial', true)

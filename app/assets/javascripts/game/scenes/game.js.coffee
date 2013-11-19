@@ -1,5 +1,6 @@
 Crafty.scene 'game', ->
   Crafty.background('white')
+  Game.soundtrack.volume()
 
   # initialization
 
@@ -105,7 +106,8 @@ Crafty.scene 'game', ->
 
   endGame = ->
     ended = true
-    window.settings.saveHighscore(score.get('points'))
+    Game.settings.saveHighscore(score.get('points'))
+    Game.soundtrack.lowVol()
     Crafty.e('Modal').fadeIn()
     Crafty.e('MenuUI').titleText('Game Over')
 

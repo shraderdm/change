@@ -7,4 +7,5 @@ Crafty.scene "menu", ->
 
   Crafty.e('SoundControls').attr(x: 895, y: 14, z: 400).soundtrack(Game.soundtrack)
   Game.soundtrack.start() unless Game.soundtrack.get('isPlaying')
+  Game.soundtrack.lowVol()
 

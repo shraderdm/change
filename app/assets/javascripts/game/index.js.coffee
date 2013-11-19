@@ -11,6 +11,6 @@
 window.Game = {}
 
 $(document).ready ->
-  window.settings = new Game.Settings()
+  Game.settings = new Game.Settings()
   Crafty.init(Config.window.width, Config.window.height, document.getElementById('game'))
   Crafty.scene('loading')

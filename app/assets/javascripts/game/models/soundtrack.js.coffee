@@ -11,13 +11,14 @@ class Game.Soundtrack extends Backbone.Model
     directory: '/assets/'
     currentSong: null
     muted: false
+    volume: 0.4
 
   initialize: ->
     @set('count', @get('songs').length)
     @_chooseRandomSong() unless @get('currentSong')?
     @_loadTrack()
 
-    if window.settings.isSoundMuted()
+    if Game.settings.isSoundMuted()
       Crafty.audio.mute()
       @set('muted', true)
 
@@ -36,14 +37,21 @@ class Game.Soundtrack extends Backbone.Model
 
   play: ->
     console.log('playing', @_trackName(), @_trackPaths())
-    Crafty.audio.play(@_trackName(), 1, 0.3)
-    Crafty.audio.sounds[@_trackName()].obj.addEventListener "ended", _.once =>
+    Crafty.audio.play(@_trackName(), 1, @get('volume'))
+    @_currentTrack().addEventListener "ended", _.once =>
       setTimeout((=> @playNextRandomTrack()), @TRACK_DELAY)
     @set('isPlaying': true)
 
   toggleMute: ->
     Crafty.audio.toggleMute()
     @set('muted', Crafty.audio.muted)
+
+  volume: (vol = @get('volume')) ->
+    return if @get('muted')
+    @_currentTrack().volume = vol
+
+  lowVol: -> @volume(0.1)
+
 
   _chooseRandomSong: ->
     @set('currentSong', _.sample(@_allOtherTrackIdxs()))
@@ -65,3 +73,6 @@ class Game.Soundtrack extends Backbone.Model
     ids = @_allOtherTrackIdxs()
     _.each ids, (id) =>
       @_loadTrack(id)
+
+  _currentTrack: ->
+    Crafty.audio.sounds[@_trackName()].obj
