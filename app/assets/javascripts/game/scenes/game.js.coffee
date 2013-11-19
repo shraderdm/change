@@ -30,12 +30,14 @@ Crafty.scene 'game', ->
   # event bindings
 
   moveFromTrayToOut = (denomination, skipUndo = false) ->
+    return if ended
     player.get('cashInRegister').subtract(denomination)
     player.get('cashOut').add(denomination)
     undoStack.push(denomination) unless skipUndo
     Game.sfx.playDenomination(denomination)
 
   moveBackToTray = (denomination, skipUndo = false) ->
+    return if ended
     player.get('cashOut').subtract(denomination)
     player.get('cashInRegister').add(denomination)
     undoStack.push(-1 * denomination) unless skipUndo
@@ -55,6 +57,8 @@ Crafty.scene 'game', ->
     player.get('cashInRegister').add(denomination, 10)
 
   @bind 'KeyDown', (ev) ->
+    return if ended
+
     if ev.key == Config.input.undo or ev.key == Config.input.alt_undo
       ev.originalEvent.preventDefault()
       ev.originalEvent.stopPropagation()
@@ -69,7 +73,7 @@ Crafty.scene 'game', ->
           else
             moveFromTrayToOut(d)
 
-  ui.cashTray.bind('Submit', -> submitRound())
+  ui.cashTray.bind('Submit', -> submitRound() if !ended)
 
   # methods
 
@@ -97,11 +101,13 @@ Crafty.scene 'game', ->
     ui.cashOut.cash(player.get('cashOut'))
     undoStack = []
 
+  ended = false
 
   endGame = ->
-    Crafty.e('Receipt').attr(x:300, y:40, w: 360, h:600, z:2000).yPos(40).heightForAnimation(600).animateUp()
-#    alert("Time Ended! Your score:#{score.get('points')}") # temporary
-#    Crafty.scene('menu')
+    ended = true
+
+#    Crafty.e('Receipt').attr(x:300, y:40, w: 360, h:600, z:2000).yPos(40).heightForAnimation(600).animateUp()
+    setTimeout((=> @bind 'KeyDown', -> Crafty.scene('menu')), 1000)
 
   # run
   ui.score.scoreModel(score)
