@@ -1,8 +1,12 @@
 *Bugs*
-- Fix assets loading (I see in the chrome network tab that assets are loaded on demand in the game).
-- Fix keyboard refill.
+- Fix assets loading (chrome network tab tells that some assets are loaded on demand).
+- Fix refill with keyboard.
+- Fix clean up of board when restarting.
+- Fix soundtracks overlapping (happens when restarting?)
+- Fix missing 'bad' sound only playing once.
 
 *UI*
+- Highscore.
 - Instructions (show up first time).
 
 *GFX*
