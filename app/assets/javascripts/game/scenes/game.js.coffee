@@ -24,6 +24,7 @@ Crafty.scene 'game', ->
 
   window.ui = ui
   currentCustomer = null
+  round = 0
   player = new Game.Player()
   score = new Game.Score(ticker:ui.ticker)
   undoStack = []
@@ -80,20 +81,22 @@ Crafty.scene 'game', ->
 
   submitRound = ->
     difference = Math.abs(currentCustomer.correctChange() - player.get('cashOut').value())
-    text = "GREAT!"
     if difference > 0
       text = "You were off by #{difference.toMoneyString()}"
       ui.feedbackLabel.showNegative(text)
     else
       ui.feedbackLabel.showPositive("GREAT!")
+
     score.submit(difference)
 
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
+    mixpanel.track('round submit', {difference: difference, round: round, score: score.get('points'), timeLeft: ui.ticker.timeLeft(), wasCorrect: difference==0})
     generateNewRound()
     Game.sfx.playRegisterOpen()
 
   generateNewRound = ->
+    mixpanel.track('round start', round: round, score: score.get('points'), timeLeft: ui.ticker.timeLeft())
     currentCustomer = new Game.Customer()
     ui.receipt.customer(currentCustomer).animateUp()
 
@@ -101,10 +104,12 @@ Crafty.scene 'game', ->
     ui.customerCash.cash(currentCustomer.get('paid'))
     ui.cashOut.cash(player.get('cashOut'))
     undoStack = []
+    round += 1
 
   ended = false
 
   endGame = ->
+    mixpanel.track('game ended', score: score.get('points'), round: round)
     ended = true
     newHighscore = score.get('points') > Game.settings.currentHighscore()
     Game.settings.saveHighscore(score.get('points'))
@@ -118,4 +123,5 @@ Crafty.scene 'game', ->
   ui.cashTray.cash(player.get('cashInRegister'))
   ui.ticker.bind('RoundTimeEnded', endGame)
   setTimeout((-> Game.sfx.playRegisterClose()), 200)
+  mixpanel.track('game start')
   generateNewRound()

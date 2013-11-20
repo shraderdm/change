@@ -45,3 +45,5 @@ Crafty.scene 'tutorial', ->
   ui.walkthrough.bind 'Ended', =>
     Game.settings.sawTutorial()
     Crafty.scene('menu')
+
+  mixpanel.track('view tutorial', firstTime: Game.settings.didSeeTutorial())
