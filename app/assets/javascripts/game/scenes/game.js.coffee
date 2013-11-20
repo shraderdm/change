@@ -90,12 +90,13 @@ Crafty.scene 'game', ->
 
       if payingLess
         if fails < Config.game.maxFails
-          Game.sfx.playUnacceptable()
           score.submit(difference)
           text = "NO WAY! You Owe me more!"
+          Game.sfx.playComboBroken()
           ui.feedbackLabel.showNegative(text)
           return
         else if payingLess
+          Game.sfx.playUnacceptable()
           text = "You are off by #{difference.toMoneyString()}! Bye!"
           ui.feedbackLabel.showNegative(text)
       else

@@ -34,6 +34,11 @@ class SoundEffects extends Backbone.Model
       fileFormat: '/assets/gameover.mp3'
       count: 1
 
+    unacceptable:
+      keyFormat: 'unacceptable'
+      fileFormat: '/assets/unacceptable.mp3'
+      count: 1
+
   initialize: ->
     _.each @attributes, (value, key) =>
       @_loadFiles(value)
@@ -60,7 +65,7 @@ class SoundEffects extends Backbone.Model
     @_play(@get('registerOpen'))
 
   playUnacceptable: ->
-#    @_play(@get('unacceptable'))
+    @_play(@get('unacceptable'))
 
   playGameover: ->
     @_play(@get('gameover'))

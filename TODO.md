@@ -3,11 +3,11 @@
 
 *Bugs*
 - Fix assets loading (chrome network tab tells that some assets are loaded on demand).
-- Add refill with keyboard.
 
 *GFX*
-- Animate the octocat tentacles when performing actions.
-- Animate people coming and putting money.
+- Refill should be animated.
+- Animate the octocat tentacles when performing actions?
+- Animate people coming and putting money?
 
 *Misc yet important*
 - Check for performance issues.
