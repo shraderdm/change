@@ -21,9 +21,12 @@ class Game.Score extends Backbone.Model
     @trigger('success')
     @get('ticker').addTime(@TIME_BONUS_PER_SUCCESS)
 
+  resetCombo: ->
+    @set('combo', @defaults.combo)
+
   submitFailure: (diff) ->
     @set('points', @get('points') + @diffFailurePoints(diff))
-    @set('combo', @defaults.combo)
+    @resetCombo()
     @trigger('failure')
     @get('ticker').subtractTime(Math.ceil(@diffFailureTransform(diff) * @TIME_PENALTY_MULTIPLIER_PER_FAILURE))
 
