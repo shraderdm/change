@@ -96,11 +96,12 @@ Crafty.scene 'game', ->
 
       if payingLess
         if fails < Config.game.maxFails
-          score.submit(difference)
+          score.resetCombo()
           Game.sfx.playComboBroken()
           ui.feedbackLabel.showAngry()
           return
         else if payingLess
+          score.submit(difference)
           Game.sfx.playUnacceptable()
           ui.feedbackLabel.showLeaving(difference.toMoneyString())
       else
@@ -109,7 +110,7 @@ Crafty.scene 'game', ->
     else
       ui.feedbackLabel.showGood()
     score.submit(difference)
-    
+
     fails = 0
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
