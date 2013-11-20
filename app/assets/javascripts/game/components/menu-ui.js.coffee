@@ -31,7 +31,7 @@ Crafty.c 'MenuUI',
       recipet.attach(@highScoreTitle)
       recipet.attach(Crafty.e('2D, DOM, Text, Logo').textFont(size: '20px').textColor("#656347").attr(w: 360, x: 300, y: 400, z: 1001).text(store.get('highscore')))
 
-    @bind('KeyDown', @_startWithSpace)
+    setTimeout((=> @bind('KeyDown', @_startWithSpace)), 1000)
 
     recipet.animateUp()
 

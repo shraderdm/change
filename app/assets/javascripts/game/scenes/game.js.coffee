@@ -88,16 +88,16 @@ Crafty.scene 'game', ->
       payingLess = trueDiff > 0
       fails += 1 if payingLess
 
-      # halt progress, player is a crook
-      if (payingLess && fails >= Config.game.maxFails)
-        Game.sfx.playUnacceptable()
-        score.submit(difference)
-        text = "NO WAY! You are off by #{difference.toMoneyString()}!!"
-        ui.feedbackLabel.showNegative(text)
-        return
-      else if payingLess
-        text = "You are off by #{difference.toMoneyString()}!"
-        ui.feedbackLabel.showNegative(text)
+      if payingLess
+        if fails < Config.game.maxFails
+          Game.sfx.playUnacceptable()
+          score.submit(difference)
+          text = "NO WAY! You Owe me more!"
+          ui.feedbackLabel.showNegative(text)
+          return
+        else if payingLess
+          text = "You are off by #{difference.toMoneyString()}! Bye!"
+          ui.feedbackLabel.showNegative(text)
       else
         text = "You gave me #{difference.toMoneyString()} more..."
         ui.feedbackLabel.showNegative(text)
@@ -107,7 +107,7 @@ Crafty.scene 'game', ->
     score.submit(difference)
 
 
-
+    fails = 0
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
     generateNewRound()
@@ -125,6 +125,7 @@ Crafty.scene 'game', ->
   ended = false
 
   endGame = ->
+    Game.sfx.playGameover()
     ended = true
     newHighscore = score.get('points') > Game.settings.currentHighscore()
     Game.settings.saveHighscore(score.get('points'))

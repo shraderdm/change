@@ -29,6 +29,10 @@ class SoundEffects extends Backbone.Model
       fileFormat: '/assets/combos/combo-broken.mp3'
       count: 1
 
+    gameover:
+      keyFormat: 'gameover'
+      fileFormat: '/assets/gameover.mp3'
+      count: 1
 
   initialize: ->
     _.each @attributes, (value, key) =>
@@ -57,6 +61,9 @@ class SoundEffects extends Backbone.Model
 
   playUnacceptable: ->
 #    @_play(@get('unacceptable'))
+
+  playGameover: ->
+    @_play(@get('gameover'))
 
   playCombo: (combo) ->
     combo = Math.min(9, combo - 1)

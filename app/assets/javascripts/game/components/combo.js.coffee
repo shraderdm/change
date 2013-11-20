@@ -11,7 +11,7 @@ Crafty.c 'Combo',
     @_score = score
     @_score.on('change:combo', @_update, @)
     @_score.on('failure', => setTimeout((=> Game.sfx.playComboBroken()), 2))
-    @_score.on('success', => setTimeout((=> Game.sfx.playCombo(@_score.get('combo'))), 2))
+    @_score.on('success', => setTimeout((=> Game.sfx.playCombo(@_score.get('combo'))), 50))
     @_update()
     @
 
