@@ -11,7 +11,6 @@ Crafty.scene "loading", ->
 
   assets = _.map(Game.images, (v,k) -> v)
   Crafty.load(assets, ->
-      console.log("finished loading")
       if Game.settings.didSeeTutorial()
         Crafty.scene('menu')
       else
