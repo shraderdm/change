@@ -1,7 +1,7 @@
 Crafty.c 'Combo',
 
   init: ->
-    @requires('2D, DOM, Text')
+    @requires('2D, DOM, Text, Tween')
     .textFont(size: '12px')
     .textColor('#ffffff')
     .css('text-align': 'left')
@@ -15,6 +15,13 @@ Crafty.c 'Combo',
     @
 
   _update: ->
-    @text("x#{@_score.get('combo')}")
+    combo = @_score.get('combo')
+    if combo >
+      @attr(y: 20)
+    else
+      @attr(y: 28)
+    @tween({y: 24}, 10)
+
+    @text("x#{combo}")
 
 
