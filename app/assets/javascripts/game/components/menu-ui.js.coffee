@@ -27,9 +27,10 @@ Crafty.c 'MenuUI',
     recipet.attach(credits)
 
     if Game.settings.hasSavedHighscore()
-      recipet.attach(Crafty.e('2D, DOM, Text, Highscore').textFont(size: '25px').textColor("#373838").attr(w: 360, x: 300, y: 350, z: 1001).text('Highscore'))
+      @highScoreTitle = Crafty.e('2D, DOM, Text, Highscore').textFont(size: '25px').textColor("#373838").attr(w: 360, x: 300, y: 350, z: 1001).text('Highscore')
+      recipet.attach(@highScoreTitle)
       recipet.attach(Crafty.e('2D, DOM, Text, Logo').textFont(size: '20px').textColor("#656347").attr(w: 360, x: 300, y: 400, z: 1001).text(store.get('highscore')))
-#
+
     @bind('KeyDown', @_startWithSpace)
 
     recipet.animateUp()
@@ -37,6 +38,13 @@ Crafty.c 'MenuUI',
 
   titleText: (text) ->
     @logo.text(text)
+    @
+
+  newHighscore: (value) ->
+    return unless value
+    @highScoreTitle.text("New highscore!")
+    @
+
 
   _startWithSpace: (e) ->
     return unless e.key == Crafty.keys['SPACE']
