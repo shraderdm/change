@@ -42,7 +42,8 @@ Crafty.c 'MenuUI',
 
   newHighscore: (value) ->
     return unless value
-    @highScoreTitle.text("New highscore!")
+    @highScoreTitle.textColor("#ff0000")
+    @highScoreTitle.text("NEW HIGHSCORE!")
     @
 
 
