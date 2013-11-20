@@ -7,7 +7,7 @@ Crafty.scene 'game', ->
   ui =
     backgroundEls:  Crafty.e('BackgroundElements')
 
-    feedbackLabel:  Crafty.e('Notification').attr(x: 160, y: 250, w: 260, h: 40)
+    feedbackLabel:  Crafty.e('Notification')
 
     customerCash:   Crafty.e('CashPile').attr(x: 20, y: 115).dir('down')
     cashOut:        Crafty.e('CashPile').attr(x: 20, y: 400).dir('up')
@@ -97,20 +97,17 @@ Crafty.scene 'game', ->
       if payingLess
         if fails < Config.game.maxFails
           score.submit(difference)
-          text = "NO WAY! You Owe me more!"
           Game.sfx.playComboBroken()
-          ui.feedbackLabel.showNegative(text)
+          ui.feedbackLabel.showAngry()
           return
         else if payingLess
           Game.sfx.playUnacceptable()
-          text = "You are off by #{difference.toMoneyString()}! Bye!"
-          ui.feedbackLabel.showNegative(text)
+          ui.feedbackLabel.showLeaving(difference.toMoneyString())
       else
-        text = "You gave me #{difference.toMoneyString()} more..."
-        ui.feedbackLabel.showNegative(text)
+        ui.feedbackLabel.showOver(difference.toMoneyString())
 
     else
-      ui.feedbackLabel.showPositive("GREAT! Thanks!")
+      ui.feedbackLabel.showGood()
     score.submit(difference)
     
     fails = 0
