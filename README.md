@@ -1,8 +1,12 @@
+# Hey Buddy
+If you're here trying to see what we're building this year, we're blushing :)
+Tweet us at [@RothschildGames](http://twitter.com/RothschildGames) and talk to us!
+
+![GitHub Game Off Game Jam](https://f.cloud.github.com/assets/121322/1436486/25f88b78-4158-11e3-9b23-43596516362c.png)
+
 # CHANG€
 
 CHANG€ is an intense game about the extreme life of supermarket cashiers.
-
-__TODO - change URL:__ You can play the game at [release-cycles.com](http://www.release-cycles.com)
 
 ![menu](https://raw.github.com/RothschildGames/change/master/public/screenshots/change00.png)..![game0](https://raw.github.com/RothschildGames/change/master/public/screenshots/change01.png)
 ![game1](https://raw.github.com/RothschildGames/change/master/public/screenshots/change02.png)..![game2](https://raw.github.com/RothschildGames/change/master/public/screenshots/change03.png)
@@ -22,8 +26,6 @@ We used the following libraries to make the game
 * FontAwesome • [homepage](http://fontawesome.io/) [repo](https://github.com/FortAwesome/Font-Awesome)
 
 ## Music
-__TODO - where did we take the music from? __
-All music was created by [Goto80](http://www.goto80.com/) taken from [CC-gratisvibes](http://gratisvibes.com/post/goto80-and-digi-dig/).
 
 
 ## Created By
