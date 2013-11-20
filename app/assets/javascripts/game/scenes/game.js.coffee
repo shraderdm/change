@@ -51,12 +51,14 @@ Crafty.scene 'game', ->
       denomination = Math.abs(top)
       if (top > 0) then moveBackToTray(denomination, true) else moveFromTrayToOut(denomination, true)
 
+  refill = (denomination) ->
+    ui.ticker.subtractTime(2)
+    player.get('cashInRegister').add(denomination, 10)
+
   ui.cashTray.bind 'DenominationClick', moveFromTrayToOut
   ui.cashOut.bind 'DenominationClick', moveBackToTray
 
-  ui.cashTray.bind 'Refill', (denomination) ->
-    ui.ticker.subtractTime(2)
-    player.get('cashInRegister').add(denomination, 10)
+  ui.cashTray.bind 'Refill', refill
 
   @bind 'KeyDown', (ev) ->
     return if ended
@@ -73,7 +75,10 @@ Crafty.scene 'game', ->
           if ev.shiftKey
             moveBackToTray(d)
           else
-            moveFromTrayToOut(d)
+            try
+              moveFromTrayToOut(d)
+            catch
+              refill(d)
 
   ui.cashTray.bind('Submit', -> submitRound() if !ended)
 
