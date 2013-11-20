@@ -10,7 +10,9 @@ Crafty.scene "loading", ->
   Game.soundtrack = new Game.Soundtrack()
 
   assets = _.map(Game.images, (v,k) -> v)
+  mixpanel.track('loading started')
   Crafty.load(assets, ->
+      mixpanel.track('loading done')
       if Game.settings.didSeeTutorial()
         Crafty.scene('menu')
       else

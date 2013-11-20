@@ -49,6 +49,8 @@ Crafty.c 'Ticker',
   _ohNo: ->
     @addComponent('oh-no')
 
+  timeLeft: -> @_remainingSeconds
+
   walkthrough: (time)->
     @_updateTicker = (->)
     @text(time)

@@ -9,3 +9,5 @@ Crafty.scene "menu", ->
   Game.soundtrack.start() unless Game.soundtrack.get('isPlaying')
   Game.soundtrack.lowVol()
 
+  mixpanel.track('view menu')
+

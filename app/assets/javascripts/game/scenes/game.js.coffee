@@ -24,6 +24,7 @@ Crafty.scene 'game', ->
 
   window.ui = ui
   currentCustomer = null
+  round = 0
   player = new Game.Player()
   score = new Game.Score(ticker:ui.ticker)
   undoStack = []
@@ -50,12 +51,14 @@ Crafty.scene 'game', ->
       denomination = Math.abs(top)
       if (top > 0) then moveBackToTray(denomination, true) else moveFromTrayToOut(denomination, true)
 
+  refill = (denomination) ->
+    ui.ticker.subtractTime(2)
+    player.get('cashInRegister').add(denomination, 10)
+
   ui.cashTray.bind 'DenominationClick', moveFromTrayToOut
   ui.cashOut.bind 'DenominationClick', moveBackToTray
 
-  ui.cashTray.bind 'Refill', (denomination) ->
-    ui.ticker.subtractTime(2)
-    player.get('cashInRegister').add(denomination, 10)
+  ui.cashTray.bind 'Refill', refill
 
   @bind 'KeyDown', (ev) ->
     return if ended
@@ -72,7 +75,10 @@ Crafty.scene 'game', ->
           if ev.shiftKey
             moveBackToTray(d)
           else
-            moveFromTrayToOut(d)
+            try
+              moveFromTrayToOut(d)
+            catch
+              refill(d)
 
   ui.cashTray.bind('Submit', -> submitRound() if !ended)
 
@@ -83,7 +89,7 @@ Crafty.scene 'game', ->
   submitRound = ->
     trueDiff = currentCustomer.correctChange() - player.get('cashOut').value()
     difference = Math.abs(trueDiff)
-    text = "GREAT!"
+
     if difference > 0
       payingLess = trueDiff > 0
       fails += 1 if payingLess
@@ -106,15 +112,16 @@ Crafty.scene 'game', ->
     else
       ui.feedbackLabel.showPositive("GREAT! Thanks!")
     score.submit(difference)
-
-
+    
     fails = 0
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
+    mixpanel.track('round submit', {difference: difference, round: round, score: score.get('points'), timeLeft: ui.ticker.timeLeft(), wasCorrect: difference==0})
     generateNewRound()
     Game.sfx.playRegisterOpen()
 
   generateNewRound = ->
+    mixpanel.track('round start', round: round, score: score.get('points'), timeLeft: ui.ticker.timeLeft())
     currentCustomer = new Game.Customer()
     ui.receipt.customer(currentCustomer).animateUp()
 
@@ -122,11 +129,13 @@ Crafty.scene 'game', ->
     ui.customerCash.cash(currentCustomer.get('paid'))
     ui.cashOut.cash(player.get('cashOut'))
     undoStack = []
+    round += 1
 
   ended = false
 
   endGame = ->
     Game.sfx.playGameover()
+    mixpanel.track('game ended', score: score.get('points'), round: round)
     ended = true
     newHighscore = score.get('points') > Game.settings.currentHighscore()
     Game.settings.saveHighscore(score.get('points'))
@@ -140,4 +149,5 @@ Crafty.scene 'game', ->
   ui.cashTray.cash(player.get('cashInRegister'))
   ui.ticker.bind('RoundTimeEnded', endGame)
   setTimeout((-> Game.sfx.playRegisterClose()), 200)
+  mixpanel.track('game start')
   generateNewRound()

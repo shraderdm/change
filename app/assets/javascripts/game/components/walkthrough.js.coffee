@@ -29,7 +29,10 @@ Crafty.c "Walkthrough",
             .attr(w: 32, h: 28, z: 1003, x: 330+320-32, y:200)
             .text('skip')
             .textFont(size: '11px/28px')
-            .bind('Click', => @trigger('Ended'))
+            .bind('Click', =>
+          mixpanel.track('tutorial skipped', step: @_currentStep)
+          @trigger('Ended')
+      )
             .css('text-align': 'center')
     @_currentStep = -1
     @step()
@@ -54,6 +57,7 @@ Crafty.c "Walkthrough",
     if @_currentStep >= @steps.length
       @trigger('Ended')
       return
+    mixpanel.track('tutorial view step', step: @_currentStep)
     @attr(@steps[@_currentStep])
 
 
