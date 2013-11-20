@@ -1,3 +1,6 @@
+* Features *
+- Add pause/end with ESC
+
 *Bugs*
 - Add support for underpaying - should not let you do that 3 times, play "NO" sound and feedback- after 3 times major punishment
 - Fix assets loading (chrome network tab tells that some assets are loaded on demand).
