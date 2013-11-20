@@ -5,9 +5,6 @@
 - Fix clean up of board when restarting.
 - Fix missing 'bad' sound only playing once.
 
-*UI*
-- Add indication when new high score set!
-
 *SFX*
 - Update combo and comboBreak sounds to something more "8bit"?
 - Combobreak should be more FAIL sound
@@ -18,6 +15,7 @@
 - Animate people coming and putting money.
 
 *Misc yet important*
+- Performance.
 - Readme.
 - Deployment.
 - Mixpanel events.
