@@ -13,7 +13,6 @@ Crafty.scene "loading", ->
   mixpanel.track('loading started')
   Crafty.load(assets, ->
       mixpanel.track('loading done')
-      console.log("finished loading")
       if Game.settings.didSeeTutorial()
         Crafty.scene('menu')
       else

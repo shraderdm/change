@@ -4,6 +4,7 @@ window.Config =
     height: 540
   game:
     time: 60
+    maxFails: 3
   input:
     submit: Crafty.keys.SPACE
     otherSubmit: Crafty.keys.ENTER

@@ -55,6 +55,9 @@ class SoundEffects extends Backbone.Model
   playRegisterOpen: ->
     @_play(@get('registerOpen'))
 
+  playUnacceptable: ->
+#    @_play(@get('unacceptable'))
+
   playCombo: (combo) ->
     combo = Math.min(9, combo - 1)
     key = @get('combos').keyFormat.format(combo)

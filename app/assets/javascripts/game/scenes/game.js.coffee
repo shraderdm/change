@@ -79,14 +79,32 @@ Crafty.scene 'game', ->
 
   # methods
 
-  submitRound = ->
-    difference = Math.abs(currentCustomer.correctChange() - player.get('cashOut').value())
-    if difference > 0
-      text = "You were off by #{difference.toMoneyString()}"
-      ui.feedbackLabel.showNegative(text)
-    else
-      ui.feedbackLabel.showPositive("GREAT!")
+  fails = 0
 
+  submitRound = ->
+    trueDiff = currentCustomer.correctChange() - player.get('cashOut').value()
+    difference = Math.abs(trueDiff)
+
+    if difference > 0
+      payingLess = trueDiff > 0
+      fails += 1 if payingLess
+
+      # halt progress, player is a crook
+      if (payingLess && fails >= Config.game.maxFails)
+        Game.sfx.playUnacceptable()
+        score.submit(difference)
+        text = "NO WAY! You are off by #{difference.toMoneyString()}!!"
+        ui.feedbackLabel.showNegative(text)
+        return
+      else if payingLess
+        text = "You are off by #{difference.toMoneyString()}!"
+        ui.feedbackLabel.showNegative(text)
+      else
+        text = "You gave me #{difference.toMoneyString()} more..."
+        ui.feedbackLabel.showNegative(text)
+
+    else
+      ui.feedbackLabel.showPositive("GREAT! Thanks!")
     score.submit(difference)
 
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
