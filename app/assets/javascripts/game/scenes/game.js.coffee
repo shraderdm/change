@@ -95,8 +95,11 @@ Crafty.scene 'game', ->
         text = "NO WAY! You are off by #{difference.toMoneyString()}!!"
         ui.feedbackLabel.showNegative(text)
         return
-      else
+      else if payingLess
         text = "You are off by #{difference.toMoneyString()}!"
+        ui.feedbackLabel.showNegative(text)
+      else
+        text = "You gave me #{difference.toMoneyString()} more..."
         ui.feedbackLabel.showNegative(text)
 
     else
