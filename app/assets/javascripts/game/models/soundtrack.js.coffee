@@ -1,5 +1,6 @@
 class Game.Soundtrack extends Backbone.Model
   TRACK_DELAY: 10
+  defaultVol: 0.4
 
   defaults:
     songs: [ #each row should be changed to array containing mp3, ogg, wav for each file...
@@ -45,8 +46,9 @@ class Game.Soundtrack extends Backbone.Model
     Crafty.audio.toggleMute()
     @set('muted', Crafty.audio.muted)
 
-  volume: (vol = @get('volume')) ->
+  volume: (vol = @defaultVol) ->
     return if @get('muted')
+    @set('volume', vol)
     @_currentTrack().volume = vol
 
   lowVol: -> @volume(0.1)

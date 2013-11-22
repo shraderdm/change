@@ -15,7 +15,7 @@ Crafty.c 'MenuUI',
     .bind('Click', => @_start())
 
     helpButton = Crafty.e("Button, Last")
-    .text("Help")
+    .text("Tutorial")
     .attr(x: 300, y: 240)
     .bind('Click', => @_help())
 

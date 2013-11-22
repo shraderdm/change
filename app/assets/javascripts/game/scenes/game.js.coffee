@@ -71,14 +71,11 @@ Crafty.scene 'game', ->
       submitRound()
     else
       _.each Game.DENOMINATIONS, (d)->
-        if ev.key == Config.input.money[d] or ev.key == Config.input.alt_money[d]
-          if ev.shiftKey
-            moveBackToTray(d)
-          else
-            try
-              moveFromTrayToOut(d)
-            catch
-              refill(d)
+        if ev.key == Config.input.money[d]
+          try
+            moveFromTrayToOut(d)
+          catch
+            refill(d)
 
   ui.cashTray.bind('Submit', -> submitRound() if !ended)
 
