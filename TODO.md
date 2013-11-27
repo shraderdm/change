@@ -1,5 +1,3 @@
-- Keyboard tutorial
-- Update music info in readme.
 - Refill should be animated.
 - Deployment.
 - Compatability (sounds + general make it work) - Firefox / Safari (Add statement at footer).

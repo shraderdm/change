@@ -8,6 +8,10 @@ CHANG€ is an intense game about the extreme life of supermarket cashiers.
 ## Browser Compatibility
 The game works and is tested on __Chrome__, __Safari__ & __Firefox__. Although it works best on WebKit browsers ( **Chrome** & __Safari__ )
 
+## Created By
+The game was created by [@yonbergman](https://twitter.com/yonbergman) and [@shayhdavidson](https://twitter.com/shayhdavidson)
+for the [Github Game-Off-2013](https://github.com/github/game-off-2013).
+
 ## Libraries
 
 We used the following libraries to make the game:
@@ -21,6 +25,16 @@ We used the following libraries to make the game:
 
 ## Music and SFX
 
+### Music
 
-## Created By
-The game was created by [@yonbergman](https://twitter.com/yonbergman) and [@shayhdavidson](https://twitter.com/shayhdavidson) for the [Github Game-Off-2013](https://github.com/github/game-off-2013).
+* [Blue Skies and Red Shoes](https://soundcloud.com/fionn_hodgson/blue-skies-and-red-shoes?in=yonbergman/sets/change) by Fionn Hodgson
+* [Mix n' Match](https://soundcloud.com/314xl/mix-n-match?in=yonbergman/sets/change) by 314XL
+* [Soft Chip](https://soundcloud.com/dgriever/soft-chip?in=yonbergman/sets/change) by DGriever
+
+### SFX
+
+* [Coins](http://www.freesound.org/people/altfuture/sounds/174629/) by altfuture
+* [Bills #1](http://www.freesound.org/people/keweldog/sounds/181763/) by keweldog
+* [Bills #2](http://www.freesound.org/people/pwausc1/sounds/118255/) by pwausc1
+* [Cash Register](http://www.freesound.org/people/kiddpark/sounds/201159/) by kiddpark
+* [Cash Receipt](http://www.freesound.org/people/kalisemorrison/sounds/202531/) by kalisemorrison
