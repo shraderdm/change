@@ -4,6 +4,13 @@
 
 $background-color: #081a2a;
 
+@mixin mobile{
+  @media screen and (max-width: 360px) {
+    @content;
+  }
+
+}
+
 html, body{
   margin: 0;
   padding: 0;
@@ -16,6 +23,22 @@ body{
 
 #game{
   margin: 40px auto;
+  @include mobile{
+    margin: 0 auto;
+    display: none;
+  }
+}
+.no-mobile{
+  display: none;
+  @include mobile{
+    width: 320px;
+    height: 180px;
+    display: block;
+    margin: 0 auto;
+    @include background-image(image-url('no-mobile.png'));
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
 }
 
 footer{
@@ -28,6 +51,10 @@ footer{
   width: 100%;
   text-align: center;
   border-top: 1px solid #484a5f;
+
+  @include mobile{
+    position: relative;
+  }
 
   a{
     color: #7f83a7;
