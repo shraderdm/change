@@ -142,7 +142,7 @@
 .CashTray { @include background-image(image-url('cash-tray-open.png'));}
 
 .Refill { @include background-image(image-url('refill.png')); background-repeat: no-repeat;}
-
+.KeyboardTutorial { @include background-image(image-url('keyboardtutorial.png')); }
 
 .Denomination{
   background-repeat: no-repeat;
@@ -172,3 +172,4 @@
     color: #B1F291;
   }
 }
+

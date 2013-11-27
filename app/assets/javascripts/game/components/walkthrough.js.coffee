@@ -9,7 +9,7 @@ Crafty.c "Walkthrough",
     {highlight:{x: 725, y: 500}, title: 'Ding!', text: 'Once you think you have the correct amount, push the cash tray close'}
     {highlight:{x: 560, y: 0}, title: 'Dong!', text: 'You will receive the most points if you get the exact amount correct'}
     {highlight:{x: 765, y: 290}, title: 'Mo Money, Mo Problems', text: 'If you ever run out of a denomination, you can request a refill'}
-    {highlight:{x: -60, y: -60}, title: 'Keyboard Fu', text: 'To play even faster you can use the keyboard.
+    {x: 150, keysOverlay:{visible: true}, highlight:{x: -60, y: -60}, title: 'Keyboard Fu', text: 'To play even faster you can use the keyboard.
         <ul>
           <li><strong>A,S,D</strong>give $1, $5, $10 </li>
           <li><strong>Z,X,C,V</strong>give 1¢, 5¢, 10¢, 50¢</li>
@@ -24,6 +24,8 @@ Crafty.c "Walkthrough",
       .setter('title', @title)
       .setter('text', @text)
       .setter('highlight', @highlight)
+      .setter('keysOverlay', @keysOverlay)
+    @_keys = Crafty.e('2D, DOM, Image, KeyboardTutorial').attr(w: 349, h: 316, x: 593, y:200, z: 1003, visible: false)
     @_highlight = Crafty.e('2D, DOM, Highlight').attr(w: 60, h: 60, x: -60, y: -60, z: 1001)
     @_skip = Crafty.e('2D, DOM, Text, Mouse, Skip')
             .attr(w: 32, h: 28, z: 1003, x: 330+320-32, y:200)
@@ -34,6 +36,7 @@ Crafty.c "Walkthrough",
           @trigger('Ended')
       )
             .css('text-align': 'center')
+    @attach(@_skip)
     @_currentStep = -1
     @step()
     @
@@ -48,6 +51,9 @@ Crafty.c "Walkthrough",
 
   highlight: (highlight)->
     @_highlight.attr(highlight)
+
+  keysOverlay: (attrs)->
+    @_keys.attr(attrs)
 
   _refresh: ->
     @replace("<div class='title'>#{@_title}</div><div class='text'>#{@_text}</div>")
