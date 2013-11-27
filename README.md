@@ -1,9 +1,3 @@
-# Hey Buddy
-If you're here trying to see what we're building this year, we're blushing :)
-Tweet us at [@RothschildGames](http://twitter.com/RothschildGames) and talk to us!
-
-![GitHub Game Off Game Jam](https://f.cloud.github.com/assets/121322/1436486/25f88b78-4158-11e3-9b23-43596516362c.png)
-
 # CHANG€
 
 CHANG€ is an intense game about the extreme life of supermarket cashiers.
@@ -16,7 +10,7 @@ The game works and is tested on __Chrome__, __Safari__ & __Firefox__. Although i
 
 ## Libraries
 
-We used the following libraries to make the game
+We used the following libraries to make the game:
 
 * CraftyJS • [homepage](http://craftyjs.com/) • [repo](https://github.com/craftyjs/Crafty) 
 * Underscore • [homepage](http://underscorejs.org/) • [repo](https://github.com/documentcloud/underscore)
@@ -25,8 +19,8 @@ We used the following libraries to make the game
 * Store.js • [repo](https://github.com/marcuswestin/store.js)
 * FontAwesome • [homepage](http://fontawesome.io/) [repo](https://github.com/FortAwesome/Font-Awesome)
 
-## Music
+## Music and SFX
 
 
 ## Created By
-The game was created by [@yonbergman](https://twitter.com/yonbergman) and [@shayhdavidson](https://twitter.com/shayhdavidson)
+The game was created by [@yonbergman](https://twitter.com/yonbergman) and [@shayhdavidson](https://twitter.com/shayhdavidson) for the [Github Game-Off-2013](https://github.com/github/game-off-2013).
