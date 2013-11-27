@@ -82,10 +82,13 @@ class SoundEffects extends Backbone.Model
 
   _loadFiles: (options) ->
     _.times options.count, (idx) =>
-      Crafty.audio.add(options.keyFormat.format(idx), @_allFormats(options.fileFormat.format(idx)))
+      Crafty.audio.add(options.keyFormat.format(idx), @_pickFormat(options.fileFormat.format(idx)))
 
-  _allFormats: (file) ->
-    [file, file.replace('mp3', 'wav'), file.replace('mp3', 'ogg')]
+  _pickFormat: (file) ->
+    if Modernizr.audio.ogg
+      file.replace('mp3', 'ogg')
+    else
+      file
 
 
 Game.sfx = new SoundEffects()

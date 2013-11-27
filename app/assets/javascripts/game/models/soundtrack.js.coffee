@@ -4,9 +4,9 @@ class Game.Soundtrack extends Backbone.Model
 
   defaults:
     songs: [ #each row should be changed to array containing mp3, ogg, wav for each file...
-      ['08-BlueSkiesAndRedShoes.mp3','08-BlueSkiesAndRedShoes.wav','08-BlueSkiesAndRedShoes.ogg']
-      ['mix_n_match.mp3','mix_n_match.wav','mix_n_match.ogg']
-      ['Soft-Chip.mp3','Soft-Chip.wav','Soft-Chip.ogg']
+      '08-BlueSkiesAndRedShoes.mp3',
+      'mix_n_match.mp3',
+      'Soft-Chip.mp3'
     ]
     isPlaying: false
     directory: '/assets/'
@@ -65,10 +65,16 @@ class Game.Soundtrack extends Backbone.Model
 
   _trackPaths: (id = @get('currentSong')) ->
     src = _.flatten([@get('songs')[id]])
-    _.map(src, (filename) => "#{@get('directory')}#{filename}")
+    _.map(src, (filename) => "#{@get('directory')}#{@_pickFormat(filename)}")
 
   _loadTrack: (id = @get('currentSong')) ->
     Crafty.audio.add(@_trackName(id), @_trackPaths(id))
+
+  _pickFormat: (file) ->
+    if Modernizr.audio.ogg
+      file.replace('mp3', 'ogg')
+    else
+      file
 
   _startLoading: ->
     ids = @_allOtherTrackIdxs()
