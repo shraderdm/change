@@ -1,6 +1,5 @@
 - Keyboard tutorial
 
-- Move 50 tentacle.
 - See score on end.
 - Hitbox of bills.
 
