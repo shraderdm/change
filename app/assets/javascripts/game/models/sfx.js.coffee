@@ -2,31 +2,31 @@ class SoundEffects extends Backbone.Model
   defaults:
     bills:
       keyFormat: 'bill-{0}'
-      fileFormat: '/assets/bills/bill-{0}.mp3'
+      fileFormat: '/assets/bill-{0}.mp3'
       count: 8
     coins:
       keyFormat: 'coin-{0}'
-      fileFormat: '/assets/coins/coin-{0}.mp3'
+      fileFormat: '/assets/coin-{0}.mp3'
       count: 7
 
     combos:
       keyFormat: 'combo{0}'
-      fileFormat: '/assets/combos/combo{0}.mp3'
-      count: 9
+      fileFormat: '/assets/combo{0}.mp3'
+      count: 8
 
     registerClose:
       keyFormat: 'register-close'
-      fileFormat: '/assets/register/close-print.mp3'
+      fileFormat: '/assets/close-print.mp3'
       count: 1
 
     registerOpen:
       keyFormat: 'register-open'
-      fileFormat: '/assets/register/open.mp3'
+      fileFormat: '/assets/open.mp3'
       count: 1
 
     comboBroken:
       keyFormat: 'combo-broken'
-      fileFormat: '/assets/combos/combo-broken.mp3'
+      fileFormat: '/assets/combo-broken.mp3'
       count: 1
 
     gameover:
@@ -71,7 +71,7 @@ class SoundEffects extends Backbone.Model
     @_play(@get('gameover'))
 
   playCombo: (combo) ->
-    combo = Math.min(9, combo - 1)
+    combo = Math.min(8, combo - 1)
     key = @get('combos').keyFormat.format(combo)
     Crafty.audio.play(key, 1)
 
@@ -81,8 +81,11 @@ class SoundEffects extends Backbone.Model
     Crafty.audio.play(key, 1)
 
   _loadFiles: (options) ->
-    _.times options.count, (idx) ->
-      Crafty.audio.add(options.keyFormat.format(idx), options.fileFormat.format(idx))
+    _.times options.count, (idx) =>
+      Crafty.audio.add(options.keyFormat.format(idx), @_allFormats(options.fileFormat.format(idx)))
+
+  _allFormats: (file) ->
+    [file, file.replace('mp3', 'wav'), file.replace('mp3', 'ogg')]
 
 
 Game.sfx = new SoundEffects()
