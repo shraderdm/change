@@ -5,7 +5,7 @@
 $background-color: #081a2a;
 
 @mixin mobile{
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 960px) {
     @content;
   }
 
@@ -30,14 +30,32 @@ body{
 }
 .no-mobile{
   display: none;
-  @include mobile{
-    width: 320px;
-    height: 180px;
+  @media screen and (max-width: 960px) {
     display: block;
     margin: 0 auto;
     @include background-image(image-url('no-mobile.png'));
     background-size: 100%;
     background-repeat: no-repeat;
+
+    width: 960px;
+    height: 540px;
+  }
+  @media screen and (max-width: 959px) {
+    width: 800px;
+    height: 450px;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 640px;
+    height: 360px;
+  }
+  @media screen and (max-width: 640px) {
+    width: 480px;
+    height: 270px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 320px;
+    height: 180px;
   }
 }
 
