@@ -9,6 +9,11 @@
   %p
     for the
     = link_to 'GitHub Game Off 2013', 'https://github.com/blog/1674-github-game-off-ii', target: :_blank
+  %p
+    %span{:class => "browser-compatibility"}= 'Works best on WebKit •'
+    %a{:href => "http://www.google.com/chrome"}= 'Chrome'
+    %span= '/'
+    %a{:href =>"http://www.apple.com/safari/"}= 'Safari'
   .mixpanel
     = link_to 'https://mixpanel.com/f/partner' do
       = image_tag '//cdn.mxpnl.com/site_media/images/partner/badge_blue.png', alt: 'Mobile Analytics'
