@@ -1,7 +1,4 @@
 - Keyboard tutorial
-
-- Hitbox of bills.
-
 - Update music info in readme.
 - Refill should be animated.
 - Deployment.
