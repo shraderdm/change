@@ -1,9 +1,8 @@
 - Keyboard tutorial
 
-- See score on end.
 - Hitbox of bills.
 
+- Update music info in readme.
 - Refill should be animated.
-- Readme.
 - Deployment.
 - Compatability (sounds + general make it work) - Firefox / Safari (Add statement at footer).
