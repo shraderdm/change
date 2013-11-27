@@ -8,6 +8,10 @@
 
     %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
     %link{:href => '/favicon.ico', :rel => 'shortcut icon'}
+    %meta{:name => 'og:url', :content => root_url}
+    %meta{:name => 'og:title', :content => t('site.title')}
+    %meta{:name => 'og:description', :content => t('site.facebook_description')}
+    %meta{:name => 'og:image', :content => image_url('facebook.png')}
 
     = stylesheet_link_tag :application, media: :all
     -#= csrf_meta_tags

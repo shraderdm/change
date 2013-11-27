@@ -38,3 +38,7 @@ We used the following libraries to make the game:
 * [Bills #2](http://www.freesound.org/people/pwausc1/sounds/118255/) by pwausc1
 * [Cash Register](http://www.freesound.org/people/kiddpark/sounds/201159/) by kiddpark
 * [Cash Receipt](http://www.freesound.org/people/kalisemorrison/sounds/202531/) by kalisemorrison
+
+----
+
+The GitHub Octocat belongs of course to GitHub.

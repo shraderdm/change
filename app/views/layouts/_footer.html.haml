@@ -9,11 +9,14 @@
   %p
     for the
     = link_to 'GitHub Game Off 2013', 'https://github.com/blog/1674-github-game-off-ii', target: :_blank
+    •
+    view the source on
+    = link_to 'GitHub', 'https://github.com/RothschildGames/change', target: :_blank
   %p
     %span{:class => "browser-compatibility"}= 'Works best on WebKit •'
-    %a{:href => "http://www.google.com/chrome"}= 'Chrome'
-    %span= '/'
-    %a{:href =>"http://www.apple.com/safari/"}= 'Safari'
+    = link_to 'Chrome', 'http://www.google.com/chrome', target: :_blank
+    %span or
+    = link_to 'Safari', 'http://www.apple.com/safari', target: :_blank
   .mixpanel
     = link_to 'https://mixpanel.com/f/partner' do
       = image_tag '//cdn.mxpnl.com/site_media/images/partner/badge_blue.png', alt: 'Mobile Analytics'
