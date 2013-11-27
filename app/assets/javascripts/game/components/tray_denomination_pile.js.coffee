@@ -13,7 +13,7 @@ Crafty.c 'TrayDenominationPile',
 
   init: ->
     _.bindAll(@, '_createDenomination')
-    @requires('2D, DOM')
+    @requires('2D, DOM, Mouse')
      .attr(z: 299, w: 82)
     @denominations = []
     @_refill = Crafty.e("2D, DOM, Image, Mouse, Refill").image(Game.images.refill).attr(x: @_x + 5, y: @_y + 5, z: @_z + 10)
