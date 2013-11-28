@@ -2,3 +2,4 @@
 - 50 cent to 25 cent.
 - Leaderboard.
 - Escape - ends game (add to tutorial too).
+- Fix typo in tutorial (close -> closed).
