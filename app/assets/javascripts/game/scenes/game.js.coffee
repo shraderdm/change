@@ -111,12 +111,12 @@ Crafty.scene 'game', ->
     fails = 0
     player.get('cashInRegister').merge(currentCustomer.get('paid'))
     player.set('cashOut', new Game.Cash())
-    mixpanel.track('round submit', {difference: difference, round: round, score: score.get('points'), timeLeft: ui.ticker.timeLeft(), wasCorrect: difference==0})
+    mixpanel.track('round submit', {difference: difference, round: round, score: score.get('points'), combo: score.get('combo'), timeLeft: ui.ticker.timeLeft(), wasCorrect: difference==0})
     generateNewRound()
     Game.sfx.playRegisterOpen()
 
   generateNewRound = ->
-    mixpanel.track('round start', round: round, score: score.get('points'), timeLeft: ui.ticker.timeLeft())
+    mixpanel.track('round start', round: round, score: score.get('points'), combo: score.get('combo'), timeLeft: ui.ticker.timeLeft())
     currentCustomer = new Game.Customer()
     ui.receipt.customer(currentCustomer).animateUp()
 
