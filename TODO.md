@@ -1,2 +1,4 @@
 - Refill should be animated.
-- Deployment.
+- 50 cent to 25 cent.
+- Leaderboard.
+- Escape - ends game (add to tutorial too).
