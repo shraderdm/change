@@ -52,7 +52,9 @@ Crafty.c 'MenuUI',
     @
 
   updateScore: (result) ->
-    @scoreLabel.text("{0}  <small>\#{1} worldwide</small>".format(result.your.score, result.your.index))
+    text = escape("I just got #{result.your.score} points on CHANGE,\nI\'m number #{result.your.index} in the world.\nTry your luck http://change-game.herokuapp.com?tweet #ggo13")
+    href = "<a class='share' href='https://twitter.com/intent/tweet?text=#{text}' target='_blank'><i class='fa fa-twitter'></i>Share Score</a>"
+    @scoreLabel.text("{0}  <small>\#{1} worldwide</small> {2}".format(result.your.score, result.your.index, href))
 
   animate: ->
     @recipet.animateUp()
