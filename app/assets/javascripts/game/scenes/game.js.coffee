@@ -136,7 +136,10 @@ Crafty.scene 'game', ->
     Game.settings.saveHighscore(score.get('points'))
     Game.soundtrack.lowVol()
     Crafty.e('Modal').fadeIn()
-    Crafty.e('MenuUI').titleText('Game Over').currentScore(score.get('points')).newHighscore(newHighscore).animate()
+    menu = Crafty.e('MenuUI').titleText('Game Over').currentScore(score.get('points')).newHighscore(newHighscore).animate()
+    score.save (result)->
+      menu.updateScore(result)
+
 
   # run
   ui.score.scoreModel(score)

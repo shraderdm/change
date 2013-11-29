@@ -37,3 +37,8 @@ class Game.Settings
 
   sawTutorial: ->
     store.set('tutorial', true)
+
+  identifier: ->
+    idn = store.get('identifier')
+    store.set('identifier', generateUUID()) unless idn
+    store.get('identifier')

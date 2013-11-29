@@ -36,6 +36,9 @@ class Game.Score extends Backbone.Model
   diffFailureTransform: (diff) ->
     Math.log(diff)
 
-
-
-
+  save: (callback = (->)) ->
+    $.post(Config.urls.add_score,
+      score:
+        identifier: Game.settings.identifier()
+        score: @get('points')
+    ).success(callback)

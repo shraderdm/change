@@ -29,7 +29,8 @@ Crafty.c 'MenuUI',
     if Game.settings.hasSavedHighscore()
       @highScoreTitle = Crafty.e('2D, DOM, Text, Highscore').textFont(size: '25px').textColor("#373838").attr(w: 360, x: 300, y: 382, z: 1001).text('Highscore')
       @recipet.attach(@highScoreTitle)
-      @recipet.attach(Crafty.e('2D, DOM, Text, Logo').textFont(size: '20px').textColor("#656347").attr(w: 360, x: 300, y: 432, z: 1001).text(store.get('highscore')))
+      @highScoreText = Crafty.e('2D, DOM, Text, Logo').textFont(size: '20px').textColor("#656347").attr(w: 360, x: 300, y: 432, z: 1001).text(Game.settings.currentHighscore())
+      @recipet.attach(@highScoreText)
 
     setTimeout((=> @bind('KeyDown', @_startWithSpace)), 1000)
 
@@ -46,8 +47,12 @@ Crafty.c 'MenuUI',
   currentScore: (value) ->
     @scoreTitle = Crafty.e('2D, DOM, Text, Highscore').textFont(size: '20px').textColor("#373838").attr(w: 360, x: 300, y: 300, z: 1001).text('Final Score')
     @recipet.attach(@scoreTitle)
-    @recipet.attach(Crafty.e('2D, DOM, Text, Logo').textFont(size: '20px').textColor("#656347").attr(w: 360, x: 300, y: 350, z: 1001).text(value))
+    @scoreLabel = Crafty.e('2D, DOM, Text, Logo').textFont(size: '20px').textColor("#656347").attr(w: 360, x: 300, y: 350, z: 1001).text(value)
+    @recipet.attach(@scoreLabel)
     @
+
+  updateScore: (result) ->
+    @scoreLabel.text("{0}  <small>\#{1} worldwide</small>".format(result.your.score, result.your.index))
 
   animate: ->
     @recipet.animateUp()
