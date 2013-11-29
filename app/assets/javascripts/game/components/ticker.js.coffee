@@ -22,11 +22,11 @@ Crafty.c 'Ticker',
     @_remainingSeconds = Math.max(0, @_remainingSeconds)
     @_updateTicker()
 
-    @_declareEnd() if @_didRoundEnd()
+    @declareEnd() if @_didRoundEnd()
 
   _tick: ->
     if @_didRoundEnd()
-      @_declareEnd()
+      @declareEnd()
       return
 
     @_remainingSeconds -= 1
@@ -39,9 +39,9 @@ Crafty.c 'Ticker',
     @trigger('RoundTimeChanged')
 
   _didRoundEnd: ->
-    @_remainingSeconds == 0
+    @_remainingSeconds == 0 || @_declaredEnd
 
-  _declareEnd: ->
+  declareEnd: ->
     if !@_declaredEnd
       @_declaredEnd = true
       @trigger('RoundTimeEnded')

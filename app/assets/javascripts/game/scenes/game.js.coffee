@@ -59,24 +59,6 @@ Crafty.scene 'game', ->
   ui.cashOut.bind 'DenominationClick', moveBackToTray
 
   ui.cashTray.bind 'Refill', refill
-
-  @bind 'KeyDown', (ev) ->
-    return if ended
-
-    if ev.key == Config.input.undo or ev.key == Config.input.alt_undo
-      ev.originalEvent.preventDefault()
-      ev.originalEvent.stopPropagation()
-      undo()
-    else if (ev.key == Config.input.submit) or (ev.key == Config.input.otherSubmit)
-      submitRound()
-    else
-      _.each Game.DENOMINATIONS, (d)->
-        if ev.key == Config.input.money[d]
-          try
-            moveFromTrayToOut(d)
-          catch
-            refill(d)
-
   ui.cashTray.bind('Submit', -> submitRound() if !ended)
 
   # methods
@@ -149,3 +131,24 @@ Crafty.scene 'game', ->
   setTimeout((-> Game.sfx.playRegisterClose()), 200)
   mixpanel.track('game start')
   generateNewRound()
+
+  setTimeout(( =>
+    @bind 'KeyDown', (ev) ->
+      return if ended
+
+      if ev.key == Config.input.undo or ev.key == Config.input.alt_undo
+        ev.originalEvent.preventDefault()
+        ev.originalEvent.stopPropagation()
+        undo()
+      else if (ev.key == Config.input.submit) or (ev.key == Config.input.otherSubmit)
+        submitRound()
+      else if (ev.key == Config.input.quit)
+        ui.ticker.declareEnd()
+      else
+        _.each Game.DENOMINATIONS, (d)->
+          if ev.key == Config.input.money[d]
+            try
+              moveFromTrayToOut(d)
+            catch
+            refill(d)
+  ), 100)

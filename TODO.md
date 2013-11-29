@@ -1,2 +1,1 @@
 - Refill should be animated.
-- Escape - ends game (add to tutorial too).
