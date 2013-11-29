@@ -6,7 +6,7 @@ Crafty.c "Walkthrough",
     {highlight:{x: 360, y: 100}, title: '... but annoying', text: 'The customer will place a certain amount of cash in front of you'}
     {highlight:{x: 590, y: 420}, title: 'Money Money Money', text: 'You need to give out the correct change from your register by clicking on the different denominations'}
     {highlight:{x: 260, y: 400}, title: 'It\'s OK to be wrong', text: 'If you took out too much of a denomination, just click on it to put it back in the cash register'}
-    {highlight:{x: 725, y: 500}, title: 'Ding!', text: 'Once you think you have the correct amount, push the cash tray close'}
+    {highlight:{x: 725, y: 500}, title: 'Ding!', text: 'Once you think you have the correct amount, push the cash tray closed'}
     {highlight:{x: 560, y: 0}, title: 'Dong!', text: 'You will receive the most points if you get the exact amount correct'}
     {highlight:{x: 765, y: 290}, title: 'Mo Money, Mo Problems', text: 'If you ever run out of a denomination, you can request a refill'}
     {x: 150, keysOverlay:{visible: true}, highlight:{x: -60, y: -60}, title: 'Keyboard Fu', text: 'To play even faster you can use the keyboard.
