@@ -150,6 +150,7 @@
   &.oneCent { @include background-image(image-url('denominations/one-cent.png')); }
   &.fiveCent { @include background-image(image-url('denominations/five-cent.png')); }
   &.tenCent { @include background-image(image-url('denominations/ten-cent.png')); }
+  &.quarter { @include background-image(image-url('denominations/quarter.png')); }
   &.fiftyCent { @include background-image(image-url('denominations/fifty-cent.png')); }
   &.oneDollar { @include background-image(image-url('denominations/one-dollar-bill.png')); }
   &.fiveDollar { @include background-image(image-url('denominations/five-dollar-bill.png')); }

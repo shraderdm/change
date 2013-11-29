@@ -1,8 +1,8 @@
 class Game.Customer extends Backbone.Model
 
   _prices:
-    main: [0, 100, 100, 200, 300, 400, 400, 500, 600, 700, 800, 900, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900]
-    part: [0, 0, 5, 10, 20, 29, 30, 40, 45, 49, 50, 50, 50, 56, 69, 79, 80, 90, 99, 99, 99, 99]
+    main: [0, 100, 100, 200, 300, 300, 400, 400, 500, 600, 700, 800, 900, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900]
+    part: [0, 0, 5, 10, 20, 25, 29, 30, 40, 45, 49, 50, 50, 50, 75, 75, 79, 80, 90, 99, 99, 99, 99]
 
 
   initialize: ->
@@ -31,7 +31,7 @@ class Game.Customer extends Backbone.Model
       @_oneLargeDenomination(target)
 
   _smallerDenomRounded: (target)->
-    roundDenominations = [50, 100, 500]
+    roundDenominations = [25, 100, 500]
     roundTo = _.sample(roundDenominations)
     target = Math.ceil(target/roundTo) * roundTo
     cash = new Game.Cash()

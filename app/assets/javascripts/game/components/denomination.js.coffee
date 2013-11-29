@@ -14,7 +14,7 @@ Crafty.c 'Denomination',
     1: Game.images.oneCent
     5: Game.images.fiveCent
     10: Game.images.tenCent
-    50: Game.images.fiftyCent
+    25: Game.images.quarter
     100: Game.images.oneDollar
     500: Game.images.fiveDollar
     1000: Game.images.tenDollar
@@ -23,7 +23,7 @@ Crafty.c 'Denomination',
     1: 'oneCent'
     5: 'fiveCent'
     10: 'tenCent'
-    50: 'fiftyCent'
+    25: 'quarter'
     100: 'oneDollar'
     500: 'fiveDollar'
     1000: 'tenDollar'

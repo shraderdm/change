@@ -12,7 +12,7 @@ Crafty.c "Walkthrough",
     {x: 150, keysOverlay:{visible: true}, highlight:{x: -60, y: -60}, title: 'Keyboard Fu', text: 'To play even faster you can use the keyboard.
         <ul>
           <li><strong>A,S,D</strong>give $1, $5, $10 </li>
-          <li><strong>Z,X,C,V</strong>give 1¢, 5¢, 10¢, 50¢</li>
+          <li><strong>Z,X,C,V</strong>give 1¢, 5¢, 10¢, 25¢</li>
           <li><strong>SPACE</strong>to push the tray close</li>
           <li><strong>BACKSPACE</strong>to undo</li>
         </ul>'}
