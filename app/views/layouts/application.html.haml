@@ -18,8 +18,6 @@
     = render 'layouts/mixpanel'
 
   %body
-    #game
-    .no-mobile
-    = javascript_include_tag :application
-    = render 'layouts/footer'
+    = yield
     = render 'layouts/uservoice'
+    = render 'layouts/footer'

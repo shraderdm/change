@@ -5,6 +5,10 @@ class ScoresController < ApplicationController
     render json: serialize_result(score_model)
   end
 
+  def highscores
+    @scores = Score.highest
+  end
+
   private
 
   def score_params

@@ -80,3 +80,31 @@ footer{
     margin: 5px;
   }
 }
+
+.container{
+  width: 520px;
+  margin: 0 auto;
+  height: 100%;
+  background: lighten($background-color, 20);
+  padding: 20px;
+  @include box-sizing(border-box);
+  margin-top: 20px;
+  h1{
+    text-align: center;
+    color: #2b2b2b;
+    margin-bottom: 5px;
+  }
+  table{
+    margin: 0 auto;
+    width: 460px;
+    text-align: center;
+    color: #2b2b2b;
+  }
+  img{
+    width: 50px;
+  }
+  tr,td{
+    padding:0;
+    margin: 0;
+  }
+}
