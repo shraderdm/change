@@ -150,5 +150,5 @@ Crafty.scene 'game', ->
             try
               moveFromTrayToOut(d)
             catch
-            refill(d)
+              refill(d)
   ), 100)
