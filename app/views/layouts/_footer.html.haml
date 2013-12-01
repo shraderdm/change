@@ -1,5 +1,5 @@
 %footer
-  %p
+  %p.less-space
     Game created by
     = link_to 'Rothschild Games', 'https://github.com/RothschildGames/', target: :_blank
     = '-'
@@ -12,11 +12,15 @@
     •
     view the source on
     = link_to 'GitHub', 'https://github.com/RothschildGames/change', target: :_blank
-  %p
-    %span{:class => "browser-compatibility"}= 'Works best on WebKit •'
+  %p.less-space
+    %span{:class => "browser-compatibility"}= 'Works on'
     = link_to 'Chrome', 'http://www.google.com/chrome', target: :_blank
     %span or
-    = link_to 'Safari', 'http://www.apple.com/safari', target: :_blank
+    = link_to 'Firefox', 'http://www.mozilla.org/en-US/firefox/new/', target: :_blank
+  %p
+    %span ( and non-Mavericks
+    = link_to 'Safari', 'http://www.apple.com/safari/', target: :_blank
+    %span )
   %p
     %span Check out the
     = link_to 'High Score Table', highscores_path , target: :_blank

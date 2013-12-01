@@ -21,6 +21,10 @@ body{
   background: $background-color;
 }
 
+.less-space {
+  margin-bottom: -10px;
+}
+
 #game{
   margin: 40px auto;
   @include mobile{
