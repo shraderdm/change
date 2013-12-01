@@ -112,3 +112,31 @@ footer{
     margin: 0;
   }
 }
+
+
+.safari-mavericks{
+  display: none;
+  position: fixed;
+  width: 100%;
+  top: 100px;
+  left: 0;
+  z-index: 1000000;
+  h1{
+    text-align: center;
+  }
+  .msg{
+    width: 480px;
+    margin: 0 auto;
+    background-color: #484a5f;
+    color: white;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    a{
+      color: #a7acdd;
+    }
+    .dismiss-p{
+      text-align: right;
+    }
+  }
+}
