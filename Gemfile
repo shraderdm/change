@@ -18,4 +18,4 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
-gem 'debugger', group: [:development, :test]
+gem 'pry-byebug', group: [:development, :test]
